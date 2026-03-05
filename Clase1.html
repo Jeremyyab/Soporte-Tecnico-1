@@ -1,0 +1,2011 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>TI-311 · Introducción al Soporte Técnico I (Clase 1)</title>
+  <style>
+    :root{
+      --bg1:#eaf1f8;
+      --bg2:#cfdceb;
+      --card:#ffffffcc;
+      --card2:#ffffffd9;
+      --stroke:#cfd9e6;
+      --stroke2:#b9c8da;
+      --text:#0f172a;
+      --muted:#50607a;
+      --brand:#0b66c3;
+      --brand2:#0a4f96;
+      --shadow: 0 18px 45px rgba(15, 23, 42, .12);
+      --round: 22px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 30% 10%, #ffffff 0%, rgba(255,255,255,0) 60%),
+        radial-gradient(800px 450px at 75% 65%, #ffffff 0%, rgba(255,255,255,0) 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:22px;
+    }
+
+    .shell{
+      width:min(1400px, 100%);
+      position:relative;
+    }
+
+    .topbar{
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.55));
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      box-shadow: 0 10px 30px rgba(15,23,42,.06);
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 320px;
+    }
+    .brand img{
+      height:42px;
+      width:auto;
+      display:block;
+    }
+    .brand .txt{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+    }
+    .brand .txt b{
+      font-size:14px;
+      color:var(--brand2);
+      letter-spacing:.2px;
+    }
+    .brand .txt span{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .topcenter{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:1;
+      justify-content:flex-start;
+      min-width: 180px;
+    }
+    .counterPill{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.65);
+      font-weight:700;
+      color:var(--brand2);
+      min-width: 92px;
+      justify-content:center;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:var(--brand);
+      box-shadow:0 0 0 4px rgba(11,102,195,.12);
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      min-width: 360px;
+    }
+
+    .pill{
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.65);
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      user-select:none;
+      cursor:default;
+      white-space:nowrap;
+    }
+    .pill .miniDot{
+      width:9px;height:9px;border-radius:999px;
+      background:rgba(11,102,195,.9);
+      box-shadow:0 0 0 4px rgba(11,102,195,.10);
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid var(--stroke2);
+      background:rgba(255,255,255,.75);
+      color:var(--brand2);
+      padding:9px 12px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+      cursor:pointer;
+      transition:.15s transform ease, .15s background ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background:rgba(255,255,255,.92); }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      background:rgba(11,102,195,.10);
+      border-color: rgba(11,102,195,.25);
+    }
+    .btn.danger{
+      color:#7a2230;
+      background:rgba(220,38,38,.08);
+      border-color: rgba(220,38,38,.18);
+    }
+    .btn.on{
+      background:rgba(11,102,195,.16);
+      border-color: rgba(11,102,195,.35);
+    }
+
+    .deck{
+      margin-top:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
+      border:1px solid var(--stroke);
+      border-radius: var(--round);
+      box-shadow: var(--shadow);
+      padding:14px;
+      position:relative;
+    }
+
+    .slide{
+      background:rgba(255,255,255,.42);
+      border:1px solid var(--stroke);
+      border-radius: 24px;
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      min-height: 620px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .left{
+      padding:6px 6px 6px 8px;
+    }
+    .kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .kicker .bar{
+      width:38px;
+      height:10px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--brand2), var(--brand));
+      box-shadow:0 0 0 6px rgba(11,102,195,.08);
+    }
+    .kicker span{
+      font-weight:800;
+      letter-spacing:.35px;
+      font-size:12px;
+      color:var(--brand2);
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:0 0 8px 0;
+      font-size:44px;
+      letter-spacing:-.8px;
+      line-height:1.05;
+    }
+    .desc{
+      margin:0 0 14px 0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      max-width: 740px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+      margin-bottom:12px;
+    }
+
+    .card{
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      padding:12px 14px;
+    }
+    .card strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:8px;
+      color:var(--text);
+    }
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .card li{ margin:4px 0; }
+
+    .bigcard{
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      padding:12px 14px;
+      margin-top:12px;
+    }
+    .bigcard .title{
+      font-weight:900;
+      color:var(--brand2);
+      margin-bottom:6px;
+      font-size:14px;
+    }
+
+    .right{
+      border-radius: 22px;
+      border:1px solid var(--stroke);
+      background:
+        radial-gradient(400px 280px at 70% 20%, rgba(255,255,255,.85), rgba(255,255,255,.0) 65%),
+        linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,.15));
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      position:relative;
+    }
+
+    .media{
+      background:rgba(255,255,255,.60);
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      padding:10px;
+      height: 360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .media img{
+      max-width:100%;
+      max-height:100%;
+      border-radius:14px;
+      display:none;
+      box-shadow: 0 18px 40px rgba(15,23,42,.18);
+    }
+    .media .placeholder{
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      padding:18px;
+      line-height:1.6;
+    }
+
+    .rightBottom{
+      margin-top:auto;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .miniCard{
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      padding:12px 14px;
+    }
+    .miniCard .label{
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:6px;
+    }
+    .miniCard .value{
+      font-weight:900;
+      font-size:20px;
+      color:var(--text);
+      letter-spacing:-.2px;
+    }
+
+    .controls{
+      margin-top:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.52));
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .progressWrap{
+      flex:1;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:0 10px;
+    }
+    .progressTrack{
+      height:10px;
+      border-radius:999px;
+      background:rgba(15,23,42,.06);
+      border:1px solid rgba(185,200,218,.7);
+      overflow:hidden;
+      flex:1;
+    }
+    .progressBar{
+      height:100%;
+      width:10%;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--brand2), var(--brand));
+      box-shadow: 0 0 0 6px rgba(11,102,195,.10) inset;
+    }
+    .hint{
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .revealRow{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    .revealBox{
+      background:rgba(255,255,255,.70);
+      border:1px dashed rgba(11,102,195,.35);
+      border-radius:16px;
+      padding:12px 14px;
+      margin-top:10px;
+      display:none;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .penCanvas{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:50;
+    }
+
+    .select{
+      border:1px solid var(--stroke2);
+      background:rgba(255,255,255,.75);
+      border-radius:999px;
+      padding:8px 10px;
+      font-weight:700;
+      color:var(--brand2);
+      font-size:12px;
+      outline:none;
+      cursor:pointer;
+    }
+
+    @media (max-width: 1100px){
+      .slide{ grid-template-columns: 1fr; min-height: unset; }
+      .right .media{ height: 300px; }
+      .actions{ min-width: unset; }
+      .brand{ min-width: unset; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <img id="logo" src="cenfotec-logo.png" alt="Universidad CENFOTEC"/>
+        <div class="txt">
+          <b id="topTitle">Hardware de computadoras personales</b>
+          <span id="topSub">Tema 1 — Fundamentos (clase virtual)</span>
+        </div>
+      </div>
+
+      <div class="topcenter">
+        <div class="counterPill"><span class="dot"></span><span id="counterTxt">01 / 13</span></div>
+      </div>
+
+      <div class="actions">
+        <div class="pill"><span class="miniDot"></span> <span>Sesión virtual</span></div>
+        <div class="pill"><span class="miniDot" style="background:rgba(11,102,195,.35)"></span> <span>Receso 15 min</span></div>
+
+        <button class="btn primary" id="penToggle">Lápiz</button>
+        <button class="btn danger" id="penClear">Borrar</button>
+
+        <select class="select" id="penSize" title="Grosor">
+          <option value="3">Fino</option>
+          <option value="5" selected>Medio</option>
+          <option value="8">Grueso</option>
+          <option value="12">Extra</option>
+        </select>
+
+        <select class="select" id="penColor" title="Color">
+          <option value="#0b66c3" selected>Azul</option>
+          <option value="#0f172a">Negro</option>
+          <option value="#dc2626">Rojo</option>
+          <option value="#16a34a">Verde</option>
+          <option value="#f59e0b">Amarillo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="deck">
+      <canvas id="penCanvas" class="penCanvas"></canvas>
+
+      <div class="slide">
+        <div class="left">
+          <div class="kicker">
+            <div class="bar"></div>
+            <span id="kicker">CURSO</span>
+          </div>
+          <h1 id="title">TI-311 · Introducción al Soporte Técnico I</h1>
+          <p class="desc" id="desc">Curso orientado al desarrollo de criterio técnico para diagnóstico, documentación y propuesta de soluciones basadas en evidencia.</p>
+
+          <div id="leftBlocks"></div>
+        </div>
+
+        <div class="right">
+          <div class="media">
+            <img id="slideImg" alt=""/>
+            <div class="placeholder" id="placeholder">
+              Colocá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
+              (Luego te voy pidiendo una por una qué imagen buscar.)
+            </div>
+          </div>
+
+          <div class="rightBottom" id="rightBottom"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="nav">
+          <button class="btn" id="prevBtn">←</button>
+          <button class="btn primary" id="nextBtn">Siguiente →</button>
+        </div>
+
+        <div class="progressWrap">
+          <div class="progressTrack"><div class="progressBar" id="progressBar"></div></div>
+          <div class="hint">Teclas: ← → / Espacio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  function pad2(n){ return String(n).padStart(2, "0"); }
+
+  const slides = [
+    // SLIDE 1
+    {
+      topTitle: "Hardware de computadoras personales",
+      topSub: "Tema 1 — Fundamentos (clase virtual)",
+      kicker: "CURSO",
+      title: "TI-311 · Introducción al Soporte Técnico I",
+      desc: "Curso orientado al desarrollo de criterio técnico para diagnóstico, documentación y propuesta de soluciones basadas en evidencia.",
+      leftBlocksHTML: `
+        <div class="bigcard" style="margin-bottom:12px;">
+          <div class="title">Información académica</div>
+          <div style="font-size:13px; line-height:1.6; color:var(--muted);">
+            Carrera: Tecnologías de Información<br>
+            Nivel: Introductorio<br>
+            Modalidad: Virtual
+          </div>
+        </div>
+
+        <div class="grid">
+          <div class="card">
+            <strong>Datos del curso</strong>
+            <ul>
+              <li>Periodo: 2026</li>
+              <li>Enfoque: Soporte TI básico</li>
+              <li>Trabajo por evidencia</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Docente</strong>
+            <ul>
+              <li>Ing. Jeremy Alvarado Blanco</li>
+              <li>Cel: 8573-9967</li>
+              <li>Correo: jalvarado@ucenfotec.ac.cr</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Evaluación</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Proyecto grupal: 55%<br>
+            Casos prácticos (3): 45%
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Reglas</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Participación activa (chat o voz).<br>
+            Micrófono con orden.<br>
+            Evidencia cuando se solicite.<br>
+            Entregas puntuales.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Duración", av:"Clase 1", bk:"Requisitos", bv:"Computación básica" },
+      imgFile: "cenfotec-logo.png"
+    },
+
+    // SLIDE 2
+    {
+      topTitle: "Introducción al Soporte Técnico",
+      topSub: "Clase 1 — Arranque (virtual)",
+      kicker: "INTRODUCCIÓN",
+      title: "Introducción al Soporte Técnico",
+      desc: "El soporte técnico es fundamental en el mundo de la tecnología, asegurando el correcto funcionamiento y mantenimiento de los sistemas informáticos.",
+      leftBlocksHTML: `
+        <div class="bigcard" style="margin-top:0">
+          <div class="title">Propósito del soporte</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            Garantizar continuidad, rendimiento y estabilidad del sistema mediante diagnóstico,
+            mantenimiento y solución de problemas con criterio técnico.
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Profesor</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            <b style="color:var(--text)">Jeremy Alvarado Blanco</b>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Mini pregunta</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            Cuando alguien dice “mi PC está lenta”, ¿eso es <b>síntoma</b> o <b>causa</b>? ¿Por qué?
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Enfoque", av:"Soporte", bk:"Clave", bv:"Mantenimiento" },
+      imgFile: "soporte.jpg"
+    },
+
+    // ---------------- SLIDE 3 (NUEVA) ----------------
+    {
+      topTitle: "Introducción al Soporte Técnico",
+      topSub: "Clase 1 — Conceptos base (virtual)",
+      kicker: "CONCEPTO",
+      title: "¿Qué es el Soporte Técnico?",
+      desc: "Entendamos el soporte técnico como un servicio esencial: comunicación + resolución de problemas.",
+      leftBlocksHTML: `
+        <div class="bigcard" style="margin-top:0">
+          <div class="title">1) Servicio esencial</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            El soporte técnico es el conjunto de servicios que brinda asistencia para
+            resolver problemas relacionados con el funcionamiento de dispositivos o software.
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">2) Comunicación efectiva</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            Los técnicos deben tener habilidades de comunicación para entender los problemas de los usuarios
+            y brindar soluciones claras y concisas.
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">3) Resolución de problemas</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            El soporte técnico se basa en identificar y solucionar problemas de hardware, software y redes,
+            garantizando la satisfacción del cliente.
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Actividad (1 minuto)</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            En el chat: escribí un ejemplo real de <b>problema</b> y luego escribí qué información
+            te faltaría para diagnosticarlo (evidencia).
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Clave", av:"Servicio", bk:"Enfoque", bv:"Solución" },
+      imgFile: "qs.jpg"  // pendiente: luego ponés la imagen de este slide
+    },
+    {
+  topTitle: "Introducción al Soporte Técnico",
+  topSub: "Clase 1 — Por qué importa (virtual)",
+  kicker: "IMPORTANCIA",
+  title: "Importancia del Soporte",
+  desc: "El soporte técnico reduce fallas, minimiza tiempos de inactividad y mejora la productividad.",
+  leftBlocksHTML: `
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">Mantenimiento preventivo</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        El soporte técnico realiza tareas de actualización, instalación de software y antivirus,
+        previniendo problemas futuros y optimizando el rendimiento.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Reducción de tiempos de inactividad</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Un soporte técnico eficiente y rápido minimiza los tiempos de inactividad,
+        permitiendo a los usuarios continuar con sus actividades sin interrupciones significativas.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Mejora la productividad</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Un soporte técnico confiable y oportuno permite a los usuarios utilizar sus
+        dispositivos y sistemas de manera eficiente, mejorando su productividad en general.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Pregunta rápida</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        ¿Cuál de estas 3 áreas impacta más a una empresa: <b>prevenir</b>, <b>resolver rápido</b> o <b>mejorar productividad</b>?
+        Defendelo con un ejemplo.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Efecto", av:"Continuidad", bk:"Meta", bv:"Menos fallas" },
+  imgFile: "is.jpg" // luego ponemos la imagen
+},
+
+{
+  topTitle: "Tema 1 · Introducción al computador personal",
+  topSub: "Clase 1 — Historia y evolución",
+  kicker: "TEMA 1",
+  title: "Historia y Evolución",
+  desc: "Un vistazo rápido a cómo nacen y se popularizan las computadoras personales y por qué eso define estándares actuales.",
+  leftBlocksHTML: `
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">Década de 1970</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        El nacimiento de las computadoras personales se atribuye a la <b>Altair 8800 (1975)</b> y a la
+        <b>Apple I (1976)</b>. Eran kits que requerían montaje y programación por parte del usuario.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Década de 1980</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Explosión de popularidad con la <b>IBM PC (1981)</b>. Surgen sistemas operativos como <b>MS-DOS</b> y se
+        establecen estándares de hardware y software.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Década de 1990</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Interfaces gráficas (GUI) como <b>Windows</b> facilitan el uso. Evolución rápida del hardware:
+        mejoras en velocidad y almacenamiento.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Mini-pregunta</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        ¿Qué creés que impactó más el crecimiento de las PC: <b>estándares</b> (IBM PC), <b>software</b> (MS-DOS/Windows) o
+        <b>hardware</b> (más potencia/almacenamiento)? Defendelo en 1 frase.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Enfoque", av:"Contexto", bk:"Meta", bv:"Comprender evolución" },
+  imgFile: "historia.jpg" // luego ponemos imagen (si querés un collage, lo armamos después)
+},
+{
+  topTitle: "Tema 1 · Introducción al computador personal",
+  topSub: "Clase 1 — Fundamentos",
+  kicker: "HARDWARE",
+  title: "Introducción al hardware de la computadora personal",
+  desc: "Comprendamos qué es una PC y qué significa realmente 'hardware' antes de analizar componentes individuales.",
+  leftBlocksHTML: `
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">Dispositivos de entrada</div>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+        <li>Teclado</li>
+        <li>Ratón / Mouse</li>
+        <li>Trackpad</li>
+        <li>Micrófono</li>
+        <li>Webcam</li>
+        <li>Escáner</li>
+      </ul>
+    </div>
+
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">Dispositivos de salida</div>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+        <li>Monitor o pantalla</li>
+        <li>Altavoces</li>
+        <li>Auriculares</li>
+        <li>Impresora</li>
+        <li>Proyector</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="bigcard">
+    <div class="title">Concepto clave</div>
+    <div style="color:var(--muted);font-size:13px;line-height:1.7">
+      Los dispositivos de entrada permiten introducir datos al sistema,
+      mientras que los de salida muestran o reproducen la información procesada.
+    </div>
+  </div>
+`,
+  rightBadges: { ak:"Concepto", av:"Hardware", bk:"Base", bv:"Componentes físicos" },
+  imgFile: "hardware.jpg" // luego agregamos la imagen
+},
+
+{
+  topTitle: "Tema 1 · Fundamentos de hardware",
+  topSub: "Clase 1 — Rol del hardware en soporte",
+  kicker: "CRITERIO TÉCNICO",
+  title: "Importancia del conocimiento de hardware para el soporte técnico",
+  desc: "Un técnico no solo cambia piezas: entiende cómo funciona el sistema para diagnosticar con lógica.",
+  leftBlocksHTML: `
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">Base del diagnóstico</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        El conocimiento del hardware es fundamental para el soporte técnico de computadoras personales.
+        Comprender la arquitectura y funcionamiento de componentes como CPU, RAM, almacenamiento y motherboard
+        permite identificar fallas con mayor precisión.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Más que reparar</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Un técnico con criterio puede:
+        <ul style="margin-top:6px">
+          <li>Identificar la causa raíz de un problema.</li>
+          <li>Realizar actualizaciones con compatibilidad correcta.</li>
+          <li>Ensamblar equipos desde cero.</li>
+          <li>Optimizar rendimiento según necesidad.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Pregunta para discusión</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        ¿Qué diferencia a alguien que "cambia piezas" de alguien que realmente entiende hardware?
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Objetivo", av:"Diagnosticar", bk:"Clave", bv:"Causa raíz" },
+  imgFile: "importancia.jpg" 
+},
+
+{
+  topTitle: "Tema 1 · Fundamentos de hardware",
+  topSub: "Clase 1 — Normas de trabajo profesional",
+  kicker: "SEGURIDAD",
+  title: "Seguridad eléctrica y ESD (Electrostatic Discharge)",
+  desc: "Antes de tocar un equipo, un técnico profesional protege su integridad y el hardware.",
+  leftBlocksHTML: `
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">¿Por qué es importante?</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Trabajar con hardware sin medidas de seguridad puede provocar:
+        <ul style="margin-top:6px">
+          <li>Descargas eléctricas personales.</li>
+          <li>Daños invisibles en componentes electrónicos.</li>
+          <li>Pérdida de garantía del equipo.</li>
+          <li>Costos innecesarios por reemplazo.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">ESD (Descarga electrostática)</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Una descarga electrostática puede ser imperceptible para el ser humano,
+        pero suficiente para dañar microcomponentes como la CPU o la memoria RAM.
+        Incluso caminar sobre alfombra puede generar miles de voltios.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Buenas prácticas</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        <ul>
+          <li>Desconectar el equipo de la corriente.</li>
+          <li>Usar pulsera antiestática.</li>
+          <li>Trabajar sobre superficie no conductora.</li>
+          <li>Descargarse tocando una superficie metálica aterrizada.</li>
+        </ul>
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Voltaje ESD", av:"3,000V+", bk:"Regla", bv:"Siempre desconectar" },
+  imgFile: "esd.jpeg"  
+},
+{
+  topTitle: "Tema 1 · Fundamentos de hardware",
+  topSub: "Clase 1 — Trabajo profesional",
+  kicker: "PREVENCIÓN",
+  title: "Técnicas para prevenir daños por ESD y precauciones a seguir",
+  desc: "La prevención es parte esencial del trabajo técnico profesional.",
+  leftBlocksHTML: `
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">Equipamiento antiestático</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Uso de pulsera antiestática, tapetes ESD y bolsas antiestáticas
+        para proteger los componentes electrónicos sensibles.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Control del ambiente</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Evitar trabajar sobre alfombras, mantener humedad controlada
+        y usar superficies no conductoras.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Manejo correcto de componentes</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Sujetar placas por los bordes, evitar tocar pines,
+        mantenerlos dentro de bolsas ESD cuando no se utilicen.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Conciencia técnica</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        La educación y disciplina del técnico previene daños invisibles
+        que pueden afectar el rendimiento a largo plazo.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Regla clave", av:"No tocar pines", bk:"Equipo básico", bv:"Pulsera ESD" },
+  imgFile: "prev-esd.jpg"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Arquitectura básica",
+  kicker: "CONCEPTOS CLAVE",
+  title: "¿Qué es un componente?",
+  desc: "Para entender una PC, primero debemos entender qué es un componente dentro de un sistema.",
+  leftBlocksHTML: `
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">Definición general</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Un componente es una parte individual que forma parte de un sistema más grande.
+        En informática y electrónica, se refiere a una pieza física o parte funcional
+        que cumple una tarea específica dentro del equipo.
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">En una computadora</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        En una PC los componentes incluyen:
+        <ul>
+          <li>Placa base (Motherboard)</li>
+          <li>CPU (Procesador)</li>
+          <li>Memoria RAM</li>
+          <li>Disco duro / SSD</li>
+          <li>Fuente de poder</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Trabajo en conjunto</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Cada componente cumple una función específica,
+        pero el verdadero funcionamiento ocurre cuando todos trabajan coordinadamente.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Idea clave", av:"Parte funcional", bk:"Sistema", bv:"Trabajo conjunto" },
+  imgFile: "componentes.jpg"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Estructura física",
+  kicker: "GABINETES",
+  title: "Gabinetes, cajas, chasis y torres",
+  desc: "El gabinete protege, organiza y permite la correcta ventilación del sistema.",
+  leftBlocksHTML: `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Tipos de gabinete</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Full Tower (Torre completa)</li>
+          <li>Mid Tower (Torre mediana)</li>
+          <li>Mini Tower</li>
+          <li>Cubo (Cube)</li>
+          <li>Small Form Factor (SFF)</li>
+        </ul>
+      </div>
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Consideraciones importantes</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Compatibilidad con la motherboard</li>
+          <li>Ventilación y flujo de aire</li>
+          <li>Capacidad de almacenamiento</li>
+          <li>Facilidad de mantenimiento</li>
+          <li>Opciones de expansión</li>
+          <li>Puertos frontales</li>
+          <li>Precio vs calidad</li>
+        </ul>
+      </div>
+
+    </div>
+  `,
+  rightBadges: { ak:"Función", av:"Protección", bk:"Clave técnica", bv:"Flujo de aire" },
+  imgFile: "cases.jpg"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Arquitectura interna",
+  kicker: "MOTHERBOARD",
+  title: "Placa base (Motherboard)",
+  desc: "La motherboard es la placa principal donde se conectan y comunican todos los componentes.",
+  leftBlocksHTML: `
+    <div class="bigcard" style="margin-top:0">
+      <div class="title">Funciones principales</div>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+        <li>Conexión física de todos los componentes</li>
+        <li>Distribución de energía eléctrica</li>
+        <li>Soporte para expansión (PCIe, RAM, almacenamiento)</li>
+        <li>Interfaz de configuración (BIOS/UEFI)</li>
+      </ul>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Componentes clave en la placa</div>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+        <li>Socket del CPU</li>
+        <li>Ranuras RAM</li>
+        <li>Conectores SATA / M.2</li>
+        <li>Ranuras PCI Express</li>
+        <li>Conectores de panel frontal (JFP1)</li>
+      </ul>
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Importancia técnica</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        La compatibilidad de todo el sistema depende de la motherboard.
+        Define tipo de CPU, RAM soportada, capacidad de expansión y conectividad.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Rol", av:"Centro de conexión", bk:"Clave", bv:"Compatibilidad" },
+  imgFile: "motherboard.jpg"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Procesamiento",
+  kicker: "CPU",
+  title: "Procesador (Central Processing Unit)",
+  desc: "La CPU es el 'cerebro' de la computadora. Ejecuta instrucciones y coordina el funcionamiento del sistema.",
+  leftBlocksHTML: `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Funciones principales</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Ejecución de instrucciones</li>
+          <li>Control de operaciones del sistema</li>
+          <li>Gestión de memoria</li>
+          <li>Realización de cálculos matemáticos</li>
+        </ul>
+      </div>
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Tipos de procesadores</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Arquitectura x86 / x64 (PC tradicionales)</li>
+          <li>Arquitectura ARM (móviles y equipos eficientes)</li>
+          <li>Procesadores de servidor (alto rendimiento)</li>
+          <li>Procesadores especializados (GPU, TPU)</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Factores técnicos importantes</div>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+        <li>Frecuencia (GHz)</li>
+        <li>Número de núcleos</li>
+        <li>Hilos de procesamiento</li>
+        <li>Consumo energético (TDP)</li>
+      </ul>
+    </div>
+  `,
+  rightBadges: { ak:"Rol", av:"Cerebro del sistema", bk:"Métrica", bv:"GHz / Núcleos" },
+  imgFile: "cpu.jpg"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Memoria principal",
+  kicker: "RAM",
+  title: "Memoria RAM (Random Access Memory)",
+  desc: "La RAM es la memoria temporal donde el sistema almacena datos en uso activo.",
+  leftBlocksHTML: `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Función en el sistema</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Almacenamiento temporal de datos</li>
+          <li>Acceso rápido para el procesador</li>
+          <li>Soporte para multitarea</li>
+          <li>Impacto directo en rendimiento</li>
+        </ul>
+      </div>
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Tipos actuales más comunes</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>DDR3 (equipos antiguos)</li>
+          <li>DDR4 (estándar actual)</li>
+          <li>DDR5 (nueva generación)</li>
+          <li>Formato DIMM (PC)</li>
+          <li>Formato SO-DIMM (Laptop)</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Factores técnicos importantes</div>
+      <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+        <li>Capacidad (GB)</li>
+        <li>Frecuencia (MHz)</li>
+        <li>Compatibilidad con la motherboard</li>
+        <li>Dual Channel</li>
+      </ul>
+    </div>
+  `,
+  rightBadges: { ak:"Clave", av:"Temporal", bk:"Unidad", bv:"GB / MHz" },
+  imgFile: "ram.jpg"
+},
+
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Almacenamiento",
+  kicker: "HDD vs SSD",
+  title: "Unidades de almacenamiento",
+  desc: "El almacenamiento guarda la información de forma permanente.",
+  leftBlocksHTML: `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Tipos principales</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>HDD (Disco mecánico)</li>
+          <li>SSD SATA (Estado sólido)</li>
+          <li>M.2 NVMe (Alta velocidad)</li>
+        </ul>
+      </div>
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Diferencias importantes</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Velocidad: SSD / M.2 mucho más rápidos</li>
+          <li>Durabilidad: SSD sin partes móviles</li>
+          <li>Capacidad vs costo: HDD más económicos por GB</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Impacto en rendimiento</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Cambiar de HDD a SSD puede mejorar el rendimiento del sistema
+        hasta 5 o 10 veces en tiempos de carga.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Clave", av:"Velocidad", bk:"Comparación", bv:"HDD vs SSD" },
+  imgFile: "almacenamiento.jpg"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Energía del sistema",
+  kicker: "FUENTE DE PODER",
+  title: "Fuente de alimentación (PSU)",
+  desc: "La fuente convierte la corriente alterna (AC) en corriente continua (DC) para alimentar los componentes.",
+  leftBlocksHTML: `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Funciones principales</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Conversión de corriente AC → DC</li>
+          <li>Suministro de energía estable</li>
+          <li>Protección contra sobrecargas</li>
+          <li>Distribución de voltajes (3.3V, 5V, 12V)</li>
+        </ul>
+      </div>
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Consideraciones al elegir</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Potencia adecuada (Watt)</li>
+          <li>Certificación 80 Plus</li>
+          <li>Amperaje en riel de 12V</li>
+          <li>Conectores disponibles</li>
+          <li>Marca y calidad</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Concepto clave</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Sin una fuente estable, todo el sistema puede fallar o dañarse.
+        La PSU es uno de los componentes más importantes en estabilidad.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Convierte", av:"AC → DC", bk:"Voltaje clave", bv:"12V" },
+  imgFile: "psu.jpg"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Control térmico",
+  kicker: "REFRIGERACIÓN",
+  title: "Sistemas de refrigeración",
+  desc: "La refrigeración mantiene temperaturas seguras para evitar daños y pérdida de rendimiento.",
+  leftBlocksHTML: `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Tipos de sistemas</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Refrigeración por aire (ventiladores + disipador)</li>
+          <li>Refrigeración líquida (bloque de agua + radiador)</li>
+        </ul>
+      </div>
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Consideraciones al elegir</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Rendimiento térmico</li>
+          <li>Compatibilidad con el socket</li>
+          <li>Nivel de ruido</li>
+          <li>Espacio disponible en gabinete</li>
+          <li>Costo y mantenimiento</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Concepto clave</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Un mal sistema de refrigeración puede provocar:
+        sobrecalentamiento, apagados inesperados y reducción de vida útil del CPU.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Objetivo", av:"Control térmico", bk:"Riesgo", bv:"Overheating" },
+  imgFile: "refrigeracion.jpg"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Expansión del sistema",
+  kicker: "EXPANSIÓN",
+  title: "Tarjetas adaptadoras y ranuras de expansión",
+  desc: "Permiten ampliar las capacidades del equipo según necesidades específicas.",
+  leftBlocksHTML: `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Tarjetas adaptadoras comunes</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Tarjeta gráfica (GPU)</li>
+          <li>Tarjeta de red (NIC)</li>
+          <li>Tarjeta de sonido</li>
+          <li>Tarjeta de captura de video</li>
+          <li>Tarjetas de expansión de puertos</li>
+        </ul>
+      </div>
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Ranuras de expansión</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>PCI (más antiguo)</li>
+          <li>PCI Express (PCIe)</li>
+          <li>PCIe x1, x4, x8, x16</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Concepto clave</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        La compatibilidad depende del tipo de ranura disponible en la motherboard.
+        La GPU generalmente utiliza PCIe x16.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Ranura clave", av:"PCIe x16", bk:"Función", bv:"Expansión" },
+  imgFile: "gpu.png"
+},
+{
+  topTitle: "Tema 3 · Componentes del computador",
+  topSub: "Clase 1 — Conectividad externa",
+  kicker: "PUERTOS",
+  title: "Puertos, cables y conectividad",
+  desc: "Los puertos permiten la comunicación entre la computadora y dispositivos externos.",
+  leftBlocksHTML: `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Puertos comunes</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>USB (A, C, Micro)</li>
+          <li>HDMI</li>
+          <li>DisplayPort</li>
+          <li>VGA (analógico)</li>
+          <li>Ethernet (RJ45)</li>
+          <li>Audio 3.5mm</li>
+        </ul>
+      </div>
+
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Tipos de cables</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Cables de datos (USB, Ethernet)</li>
+          <li>Cables de video (HDMI, DP, VGA)</li>
+          <li>Cables de energía</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="bigcard">
+      <div class="title">Concepto clave</div>
+      <div style="color:var(--muted);font-size:13px;line-height:1.7">
+        Identificar correctamente los puertos es esencial en soporte técnico
+        para diagnóstico de fallas de conexión.
+      </div>
+    </div>
+  `,
+  rightBadges: { ak:"Clave", av:"Conectividad", bk:"Diagnóstico", bv:"Identificación" },
+  imgFile: "ports.jpg"
+},
+
+    // --- sigue lo que ya estaba ---
+    {
+      kicker: "TEMA 1",
+      title: "Fundamentos de hardware de computadoras personales",
+      desc: "Hoy analizaremos la arquitectura básica de una PC de escritorio, su flujo de energía, datos y refrigeración, y cómo diagnosticar fallas comunes con criterio técnico.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>Hoy vas a poder</strong>
+            <ul>
+              <li>Reconocer los componentes principales y su función.</li>
+              <li>Conectar ideas: energía, datos y refrigeración.</li>
+              <li>Empezar a diagnosticar por síntomas.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Cómo trabajamos</strong>
+            <ul>
+              <li>Mini-retos en chat/voz.</li>
+              <li>Búsqueda rápida de evidencia.</li>
+              <li>Comparación de criterios.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Arranque</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Si una PC enciende (ventiladores giran) pero no muestra imagen,
+¿qué componente revisarías primero y qué evidencia buscarías?
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Modalidad", av:"Virtual", bk:"Enfoque", bv:"Evidencia" },
+      imgFile: "hardware-portada.png"
+    },
+
+    {
+      kicker: "MAPA RÁPIDO",
+      title: "¿Qué hay dentro de una computadora?",
+      desc: "Pensalo por sistemas: energía, procesamiento, memoria, almacenamiento y comunicación.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>Mapa rápido</strong>
+            <ul>
+              <li><b>Energía</b>: PSU, cables, conectores.</li>
+              <li><b>Procesamiento</b>: CPU (y GPU si aplica).</li>
+              <li><b>Memoria</b>: RAM.</li>
+              <li><b>Almacenamiento</b>: SSD/HDD.</li>
+              <li><b>Comunicación</b>: Motherboard, buses y puertos.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Reto</strong>
+            <ul>
+              <li>Elegí un componente.</li>
+              <li>Decí qué problema resuelve.</li>
+              <li>Decí un síntoma típico cuando falla.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Discusión</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            ¿Qué mejora más la “sensación de velocidad”: más RAM o pasar a SSD? Defendelo.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Meta", av:"Visión global", bk:"Resultado", bv:"Criterio" },
+      imgFile: "pc-inside.png"
+    },
+
+    {
+      kicker: "PREPARACIÓN",
+      title: "Herramientas para analizar hardware desde el sistema",
+      desc: "Vamos a usar herramientas simples para identificar componentes y ver datos reales del equipo.",
+      leftBlocksHTML: `
+        <div class="card">
+          <strong>Herramienta base</strong>
+          <ul>
+            <li>Administrador de tareas → Rendimiento</li>
+            <li>Identificar CPU, RAM y Disco</li>
+            <li>Observar porcentajes de uso</li>
+          </ul>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Primera lectura</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+1. ¿El CPU está en uso normal o alto?<br>
+2. ¿La RAM está cercana al 80–90%? <br>
+3. ¿El disco está al 100% constantemente?<br>
+4. ¿La velocidad del CPU coincide con la base?<br>
+5. ¿Qué investigarías después?
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Entrega", av:"Captura", bk:"Meta", bv:"Datos reales" },
+      imgFile: "taskmanager-cpu.png"
+    },
+
+    {
+      kicker: "SEGURIDAD",
+      title: "Seguridad eléctrica y ESD",
+      desc: "Muchos “daños misteriosos” vienen por energía residual o electricidad estática.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>Antes de intervenir</strong>
+            <ul>
+              <li>Desconectar de la red eléctrica.</li>
+              <li>Descargar energía residual (botón 10–15s).</li>
+              <li>Confirmar ausencia de alimentación en PSU.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Para evitar estática</strong>
+            <ul>
+              <li>Descarga previa tocando chasis..</li>
+              <li>Manipular por bordes.</li>
+              <li>Uso de pulsera antiestática cuando sea posible.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Situación</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+           Después de una limpieza el equipo no enciende.<br>
+            Plantee 3 hipótesis técnicas y describa <br>
+qué evidencia confirmaría o descartaría cada una.
+          </div>
+
+          <div class="revealRow">
+            <button class="btn primary" data-reveal="r1">Mostrar pistas</button>
+            <button class="btn" data-hide="r1">Ocultar</button>
+          </div>
+          <div class="revealBox" id="r1">
+            Pistas posibles: conector ATX 24p flojo, EPS 8p (CPU) desconectado, RAM mal asentada,
+            switch de la PSU apagado, daño por ESD en RAM/GPU, cable del botón power desconectado.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Meta", av:"Manipular seguro", bk:"Riesgo", bv:"Daño invisible" },
+      imgFile: "hardware-portada.png"
+    },
+
+    {
+      kicker: "ENERGÍA",
+      title: "AC vs DC y el papel de la fuente (PSU)",
+      desc: "La PSU toma corriente alterna (AC) y entrega corriente directa (DC) en distintos voltajes para el equipo.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>Conceptos clave</strong>
+            <ul>
+              <li><b>AC</b>: corriente alterna proveniente de la red eléctrica (110–120V / 220V).</li>
+              <li><b>DC</b>: corriente continua estable utilizada por componentes electrónicos.</li>
+              <li>La PSU rectifica y regula AC → DC.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Voltajes típicos</strong>
+            <ul>
+              <li>12V: CPU, GPU, ventiladores, motores.</li>
+              <li>5V: USB, discos, lógica secundaria.</li>
+              <li>3.3V: Chipset, memorias y buses.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Mini reto</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+           Si la PSU es insuficiente o presenta falla: <br>
+• Mencione 2 síntomas. <br>
+• Indique qué componente podría verse primero afectado.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Tema", av:"Energía", bk:"Clave", bv:"AC → DC" },
+      imgFile: "hardware-portada.png"
+    },
+
+    {
+      kicker: "CONEXIONES",
+      title: "Panel frontal (JFP1 / F_PANEL)",
+      desc: "Aquí se conectan los interruptores y LEDs del gabinete: Power SW, Reset SW, HDD LED y Power LED.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>¿Qué se conecta?</strong>
+            <ul>
+              <li><b>Power SW</b>: botón de encendido</li>
+              <li><b>Reset SW</b>: botón de reset</li>
+              <li><b>HDD LED</b>: actividad de disco</li>
+              <li><b>Power LED</b>: encendido</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Detalles técnicos</strong>
+            <ul>
+              <li>Los <b>switches(Power/Reset)</b> no tienen polaridad.</li>
+              <li>Los <b>LEDs</b> requieren respetar polaridad (+ / -).</li>
+              <li>El <b>pin 9</b> suele ser <b>NC</b> (No conectado) y sirve como referencia física..</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Actividad rápida</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Te muestro un diagrama de pines. En equipo:
+            <b>ubiquen</b> Power SW, Reset SW y los LEDs. Luego explican cómo verificarían si quedó bien.
+          </div>
+
+          <div class="revealRow">
+            <button class="btn primary" data-reveal="r2">Mostrar guía</button>
+            <button class="btn" data-hide="r2">Ocultar</button>
+          </div>
+          <div class="revealBox" id="r2">
+            Idea de verificación: si no enciende, revisar Power SW / orientación en el header.
+            Si enciende pero LEDs no prenden, invertir polaridad del LED.
+            Si reset no funciona, revisar que esté en los pines correctos (no daña normalmente).
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Conector", av:"JFP1", bk:"Clave", bv:"Pin 9 referencia" },
+      imgFile: "jfp1.jpg"
+    },
+
+    {
+      kicker: "COMPONENTES",
+      title: "Motherboard: donde se unen energía y datos",
+      desc: "La motherboard integra distribución de energía, comunicación por buses y control de arranque del sistema.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>Qué hace</strong>
+            <ul>
+              <li>Distribuye energía regulada a los componentes.).</li>
+              <li>Permite comunicación mediante buses (PCIe, SATA, USB).</li>
+              <li>Coordina arranque vía BIOS/UEFI.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Qué revisar en soporte</strong>
+            <ul>
+              <li>Conectores ATX 24p y EPS 8p.</li>
+              <li>Slots RAM y PCIe bien asentados.</li>
+              <li>Puertos y cables dañados.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Pregunta</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+           ¿Qué síntomas observarías si una RAM está mal asentada? <br>
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Rol", av:"Conectar", bk:"Dato", bv:"Buses y energía" },
+      imgFile: "hardware-portada.png"
+    },
+
+    {
+      kicker: "COMPONENTES",
+      title: "CPU + refrigeración",
+      desc: "La CPU ajusta su frecuencia según temperatura y carga. Sin refrigeración adecuada puede entrar en throttling o apagado térmico.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>Qué observar</strong>
+            <ul>
+              <li>Temperaturas bajo carga (no solo en reposo).</li>
+              <li>Presencia de thermal throttling.</li>
+              <li>Estado y aplicación de pasta térmica.</li>
+              <li>Ventilador conectado al header CPU_FAN.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Mini caso</strong>
+            <ul>
+              <li>“La PC va lenta después de 10 minutos.”</li>
+              <li>¿Qué medirías primero?</li>
+              <li>¿Qué prueba realizarías para confirmarlo?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Tip</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Primero confirmar métricas (temperatura y frecuencia),
+luego intervenir físicamente.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Clave", av:"Temperatura", bk:"Riesgo", bv:"Throttling" },
+      imgFile: "hardware-portada.png"
+    },
+
+    {
+      kicker: "COMPONENTES",
+      title: "Memoria RAM y almacenamiento (HDD/SSD)",
+      desc: "La RAM impacta ejecución en tiempo real. El almacenamiento impacta tiempos de carga y respuesta del sistema..",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>RAM</strong>
+            <ul>
+              <li>Impacta multitarea y estabilidad del sistema..</li>
+              <li>Fallas generan pantallazos, reinicios o no POST.</li>
+              <li>Configuración incorrecta afecta dual-channel.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>SSD vs HDD</strong>
+            <ul>
+              <li>SSD reduce latencia y mejora tiempos de arranque.</li>
+              <li>HDD ofrece mayor capacidad por menor costo.</li>
+              <li>SMART permite monitorear salud del disco.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Actividad</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            La PC tarda mucho en encender y abrir programas,
+pero una vez abiertos funcionan normal.
+¿Qué priorizás? <br>
+
+La PC se pone lenta cuando hay muchas pestañas abiertas
+o varios programas al mismo tiempo.
+¿Qué priorizás? <br>
+
+La PC se congela aleatoriamente y a veces reinicia
+sin mostrar errores claros.
+¿Qué revisarías primero? <br>
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Claves", av:"RAM/SSD", bk:"Criterio", bv:"Priorizar" },
+      imgFile: "hardware-portada.png"
+    },
+
+    {
+      kicker: "RECOMENDACIONES",
+      title: "Armar una PC según necesidades",
+      desc: "No existe “la mejor PC”. Existe la mejor para una necesidad y un presupuesto.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>Escenarios típicos</strong>
+            <ul>
+              <li>Oficina/estudio</li>
+              <li>Gaming</li>
+              <li>Edición (foto/video)</li>
+              <li>Servidor pequeño / laboratorio</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Cómo decidir</strong>
+            <ul>
+              <li>CPU: tareas y cores.</li>
+              <li>RAM: multitarea.</li>
+              <li>SSD: fluidez general.</li>
+              <li>GPU: si hay render/juegos.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Dinámica</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Trabajo en equipos (3–4 personas). <br>
+
+Cada equipo recibe un escenario distinto.
+Deben proponer una configuración básica y justificar
+sus decisiones técnicas.<br>
+
+Escenario A – Oficina / Estudio
+Uso: navegación, documentos, clases virtuales.<br>
+
+Escenario B – Gaming
+Uso: juegos actuales en calidad media/alta.<br>
+
+Escenario C – Edición
+Uso: edición de foto y video en 1080p.<br>
+
+Escenario D – Laboratorio / servidor pequeño
+Uso: almacenamiento compartido y pruebas técnicas.<br>
+
+Entrega:<br>
+• CPU recomendado<br>
+• Cantidad de RAM<br>
+• Tipo de almacenamiento<br>
+• ¿Necesita GPU dedicada?<br>
+• Justificación técnica (máx. 5 líneas)
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Meta", av:"Recomendar", bk:"Base", bv:"Necesidad" },
+      imgFile: "pc.png"
+    },
+
+    {
+      kicker: "CASO PRÁCTICO 1",
+      title: "Enciende… pero no da imagen",
+      desc: "Diagnóstico por síntomas: hipótesis → evidencia → prueba.",
+      leftBlocksHTML: `
+        <div class="bigcard">
+          <div class="title">Situación</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            La PC enciende (fans giran), pero no hay video.<br><br>
+            En equipos:
+            <b>1)</b> escriban 3 hipótesis,
+            <b>2)</b> qué revisar primero,
+            <b>3)</b> qué evidencia pedirían.
+          </div>
+
+          <div class="revealRow">
+            <button class="btn primary" data-reveal="r3">Mostrar posibles líneas</button>
+            <button class="btn" data-hide="r3">Ocultar</button>
+          </div>
+          <div class="revealBox" id="r3">
+            Líneas comunes: cable/monitor, RAM, GPU, conector EPS 8p CPU, PSU, salida de video correcta,
+            beep codes/luces debug si existen, reseat de componentes, prueba por descarte.
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Cierre del caso</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Cada equipo comparte su ruta de diagnóstico (1 minuto). Elegimos la más sólida por evidencia.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Enfoque", av:"Hipótesis", bk:"Clave", bv:"Evidencia" },
+      imgFile: "hardware-portada.png"
+    },
+
+    {
+      kicker: "RECESO",
+      title: "Receso (15 minutos)",
+      desc: "Volvemos y hacemos retroalimentación + asignación del proyecto del curso.",
+      leftBlocksHTML: `
+        <div class="bigcard">
+          <div class="title">Al volver</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Revisamos respuestas del caso práctico, afinamos criterios y dejamos el proyecto definido.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Tiempo", av:"15 min", bk:"Luego", bv:"Retro + Proyecto" },
+      imgFile: "hardware-portada.png"
+    },
+
+    {
+      kicker: "PROYECTO DEL CURSO",
+      title: "Proyecto grupal + defensa final",
+      desc: "Diseño y justificación técnica de una PC de escritorio según necesidad.",
+      leftBlocksHTML: `
+        <div class="grid">
+          <div class="card">
+            <strong>Escenario</strong>
+            <ul>
+              <li>Gaming</li>
+              <li>Oficina/estudio</li>
+              <li>Edición foto/video</li>
+              <li>Servidor pequeño</li>
+            </ul>
+          </div>
+          <div class="card">
+            <strong>Entregable</strong>
+            <ul>
+              <li>Lista de componentes</li>
+              <li>Compatibilidad (CPU/Mobo/RAM)</li>
+              <li>Alimentación (PSU) y riesgos</li>
+              <li>Justificación por necesidad</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="bigcard">
+          <div class="title">Defensa</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.6">
+            Presentan y defienden decisiones con criterios técnicos (no “porque sí”).
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Peso", av:"55%", bk:"Clave", bv:"Justificar" },
+      imgFile: "hardware-portada.png"
+    }
+  ];
+
+  const elTopTitle = document.getElementById("topTitle");
+  const elTopSub = document.getElementById("topSub");
+  const elCounter = document.getElementById("counterTxt");
+  const elKicker = document.getElementById("kicker");
+  const elTitle = document.getElementById("title");
+  const elDesc = document.getElementById("desc");
+  const elLeft = document.getElementById("leftBlocks");
+  const elRightBottom = document.getElementById("rightBottom");
+  const elImg = document.getElementById("slideImg");
+  const elPh = document.getElementById("placeholder");
+  const elProgress = document.getElementById("progressBar");
+
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function setSlideImage(src){
+    if(!src){
+      elImg.style.display = "none";
+      elPh.style.display = "block";
+      elPh.innerHTML = `
+        Agregá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
+        (Esta slide queda pendiente de imagen. Luego solo poné el nombre en <b>imgFile</b>.)
+      `;
+      return;
+    }
+    elImg.src = src;
+    elImg.onload = () => {
+      elImg.style.display = "block";
+      elPh.style.display = "none";
+    };
+    elImg.onerror = () => {
+      elImg.style.display = "none";
+      elPh.style.display = "block";
+      elPh.textContent = "No se encontró la imagen: " + src + " (ponela en la misma carpeta del HTML).";
+    };
+  }
+
+  function renderBadges(b){
+    elRightBottom.innerHTML = "";
+    const mk = (label, value) => {
+      const d = document.createElement("div");
+      d.className = "miniCard";
+      d.innerHTML = `<div class="label">${label}</div><div class="value">${value}</div>`;
+      return d;
+    };
+    if(b && b.ak) elRightBottom.appendChild(mk(b.ak, b.av || ""));
+    if(b && b.bk) elRightBottom.appendChild(mk(b.bk, b.bv || ""));
+  }
+
+  function wireRevealButtons(){
+    document.querySelectorAll("[data-reveal]").forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.getAttribute("data-reveal");
+        const box = document.getElementById(id);
+        if(box) box.style.display = "block";
+      };
+    });
+    document.querySelectorAll("[data-hide]").forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.getAttribute("data-hide");
+        const box = document.getElementById(id);
+        if(box) box.style.display = "none";
+      };
+    });
+  }
+
+  let idx = 0;
+
+  function render(){
+    const s = slides[idx];
+
+    elTopTitle.textContent = s.topTitle || "Hardware de computadoras personales";
+    elTopSub.textContent = s.topSub || "Tema 1 — Fundamentos (clase virtual)";
+
+    elCounter.textContent = `${pad2(idx+1)} / ${pad2(slides.length)}`;
+    elKicker.textContent = s.kicker || "";
+    elTitle.textContent = s.title || "";
+    elDesc.textContent = s.desc || "";
+
+    elLeft.innerHTML = s.leftBlocksHTML || "";
+    renderBadges(s.rightBadges || null);
+    setSlideImage(s.imgFile || "");
+
+    const pct = ((idx+1) / slides.length) * 100;
+    elProgress.style.width = pct + "%";
+
+    wireRevealButtons();
+    clearPen();
+  }
+
+  function next(){ idx = Math.min(slides.length - 1, idx + 1); render(); }
+  function prev(){ idx = Math.max(0, idx - 1); render(); }
+
+  nextBtn.addEventListener("click", next);
+  prevBtn.addEventListener("click", prev);
+
+  window.addEventListener("keydown", (e) => {
+    if(e.key === "ArrowRight" || e.key === " "){ e.preventDefault(); next(); }
+    if(e.key === "ArrowLeft"){ e.preventDefault(); prev(); }
+  });
+
+  const canvas = document.getElementById("penCanvas");
+  const penToggle = document.getElementById("penToggle");
+  const penClearBtn = document.getElementById("penClear");
+  const penSize = document.getElementById("penSize");
+  const penColor = document.getElementById("penColor");
+
+  let penOn = false;
+  let drawing = false;
+  let last = {x:0,y:0};
+
+  function resizeCanvas(){
+    const rect = document.querySelector(".deck").getBoundingClientRect();
+    canvas.width = Math.floor(rect.width * window.devicePixelRatio);
+    canvas.height = Math.floor(rect.height * window.devicePixelRatio);
+    canvas.style.width = rect.width + "px";
+    canvas.style.height = rect.height + "px";
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(window.devicePixelRatio,0,0,window.devicePixelRatio,0,0);
+  }
+
+  window.addEventListener("resize", () => { resizeCanvas(); });
+
+  function getLocalPos(ev){
+    const deck = document.querySelector(".deck");
+    const r = deck.getBoundingClientRect();
+    const x = (ev.clientX ?? (ev.touches && ev.touches[0].clientX)) - r.left;
+    const y = (ev.clientY ?? (ev.touches && ev.touches[0].clientY)) - r.top;
+    return {x, y};
+  }
+
+  function drawLine(a,b){
+    const ctx = canvas.getContext("2d");
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = penColor.value;
+    ctx.lineWidth = Number(penSize.value);
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+  }
+
+  function clearPen(){
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+
+  const deckEl = document.querySelector(".deck");
+
+  function onDown(ev){
+    if(!penOn) return;
+    drawing = true;
+    const p = getLocalPos(ev);
+    last = p;
+    ev.preventDefault();
+  }
+  function onMove(ev){
+    if(!penOn || !drawing) return;
+    const p = getLocalPos(ev);
+    drawLine(last, p);
+    last = p;
+    ev.preventDefault();
+  }
+  function onUp(){
+    drawing = false;
+  }
+
+  deckEl.addEventListener("mousedown", onDown);
+  deckEl.addEventListener("mousemove", onMove);
+  window.addEventListener("mouseup", onUp);
+
+  deckEl.addEventListener("touchstart", onDown, {passive:false});
+  deckEl.addEventListener("touchmove", onMove, {passive:false});
+  window.addEventListener("touchend", onUp);
+
+  penToggle.addEventListener("click", () => {
+    penOn = !penOn;
+    canvas.style.pointerEvents = penOn ? "auto" : "none";
+    penToggle.classList.toggle("on", penOn);
+  });
+
+  penClearBtn.addEventListener("click", () => clearPen());
+
+  resizeCanvas();
+  render();
+
+})();
+</script>
+</body>
+</html>
