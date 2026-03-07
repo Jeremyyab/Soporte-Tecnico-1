@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>TI-311 · Introducción al Soporte Técnico I (Clase 1)</title>
+  <style>
+    :root{
+      --bg1:#eaf1f8;
+      --bg2:#cfdceb;
+      --card:#ffffffcc;
+      --card2:#ffffffd9;
+      --stroke:#cfd9e6;
+      --stroke2:#b9c8da;
+      --text:#0f172a;
+      --muted:#50607a;
+      --brand:#0b66c3;
+      --brand2:#0a4f96;
+      --shadow: 0 18px 45px rgba(15, 23, 42, .12);
+      --round: 22px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 30% 10%, #ffffff 0%, rgba(255,255,255,0) 60%),
+        radial-gradient(800px 450px at 75% 65%, #ffffff 0%, rgba(255,255,255,0) 55%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      padding:22px;
+    }
+
+    .shell{
+      width:min(1400px, 100%);
+      position:relative;
+    }
+
+    .topbar{
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.55));
+      border:1px solid var(--stroke);
+      border-radius:18px;
+      box-shadow: 0 10px 30px rgba(15,23,42,.06);
+      padding:14px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 320px;
+    }
+    .brand img{
+      height:42px;
+      width:auto;
+      display:block;
+    }
+    .brand .txt{
+      display:flex;
+      flex-direction:column;
+      line-height:1.15;
+    }
+    .brand .txt b{
+      font-size:14px;
+      color:var(--brand2);
+      letter-spacing:.2px;
+    }
+    .brand .txt span{
+      font-size:12px;
+      color:var(--muted);
+    }
+
+    .topcenter{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex:1;
+      justify-content:flex-start;
+      min-width: 180px;
+    }
+    .counterPill{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.65);
+      font-weight:700;
+      color:var(--brand2);
+      min-width: 92px;
+      justify-content:center;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:var(--brand);
+      box-shadow:0 0 0 4px rgba(11,102,195,.12);
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+      min-width: 360px;
+    }
+
+    .pill{
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--stroke);
+      background:rgba(255,255,255,.65);
+      color:var(--muted);
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:12px;
+      user-select:none;
+      cursor:default;
+      white-space:nowrap;
+    }
+    .pill .miniDot{
+      width:9px;height:9px;border-radius:999px;
+      background:rgba(11,102,195,.9);
+      box-shadow:0 0 0 4px rgba(11,102,195,.10);
+    }
+
+    .btn{
+      appearance:none;
+      border:1px solid var(--stroke2);
+      background:rgba(255,255,255,.75);
+      color:var(--brand2);
+      padding:9px 12px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:12px;
+      cursor:pointer;
+      transition:.15s transform ease, .15s background ease;
+      user-select:none;
+    }
+    .btn:hover{ transform: translateY(-1px); background:rgba(255,255,255,.92); }
+    .btn:active{ transform: translateY(0px); }
+    .btn.primary{
+      background:rgba(11,102,195,.10);
+      border-color: rgba(11,102,195,.25);
+    }
+    .btn.danger{
+      color:#7a2230;
+      background:rgba(220,38,38,.08);
+      border-color: rgba(220,38,38,.18);
+    }
+    .btn.on{
+      background:rgba(11,102,195,.16);
+      border-color: rgba(11,102,195,.35);
+    }
+
+    .deck{
+      margin-top:14px;
+      background:linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,.35));
+      border:1px solid var(--stroke);
+      border-radius: var(--round);
+      box-shadow: var(--shadow);
+      padding:14px;
+      position:relative;
+    }
+
+    .slide{
+      background:rgba(255,255,255,.42);
+      border:1px solid var(--stroke);
+      border-radius: 24px;
+      padding:18px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:18px;
+      min-height: 620px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .left{
+      padding:6px 6px 6px 8px;
+    }
+    .kicker{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin-bottom:8px;
+    }
+    .kicker .bar{
+      width:38px;
+      height:10px;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--brand2), var(--brand));
+      box-shadow:0 0 0 6px rgba(11,102,195,.08);
+    }
+    .kicker span{
+      font-weight:800;
+      letter-spacing:.35px;
+      font-size:12px;
+      color:var(--brand2);
+      text-transform:uppercase;
+    }
+
+    h1{
+      margin:0 0 8px 0;
+      font-size:44px;
+      letter-spacing:-.8px;
+      line-height:1.05;
+    }
+    .desc{
+      margin:0 0 14px 0;
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.55;
+      max-width: 740px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top:12px;
+      margin-bottom:12px;
+    }
+
+    .card{
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      padding:12px 14px;
+    }
+    .card strong{
+      display:block;
+      font-size:13px;
+      margin-bottom:8px;
+      color:var(--text);
+    }
+    .card ul{
+      margin:0;
+      padding-left:18px;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.55;
+    }
+    .card li{ margin:4px 0; }
+
+    .bigcard{
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      padding:12px 14px;
+      margin-top:12px;
+    }
+    .bigcard .title{
+      font-weight:900;
+      color:var(--brand2);
+      margin-bottom:6px;
+      font-size:14px;
+    }
+
+    .right{
+      border-radius: 22px;
+      border:1px solid var(--stroke);
+      background:
+        radial-gradient(400px 280px at 70% 20%, rgba(255,255,255,.85), rgba(255,255,255,.0) 65%),
+        linear-gradient(180deg, rgba(255,255,255,.40), rgba(255,255,255,.15));
+      padding:14px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      position:relative;
+    }
+
+    .media{
+      background:rgba(255,255,255,.60);
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      padding:10px;
+      height: 360px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      position:relative;
+    }
+    .media img{
+      max-width:100%;
+      max-height:100%;
+      border-radius:14px;
+      display:none;
+      box-shadow: 0 18px 40px rgba(15,23,42,.18);
+    }
+    .media .placeholder{
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      padding:18px;
+      line-height:1.6;
+    }
+
+    .rightBottom{
+      margin-top:auto;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    .miniCard{
+      background:rgba(255,255,255,.65);
+      border:1px solid var(--stroke);
+      border-radius: 16px;
+      padding:12px 14px;
+    }
+    .miniCard .label{
+      color:var(--muted);
+      font-size:12px;
+      margin-bottom:6px;
+    }
+    .miniCard .value{
+      font-weight:900;
+      font-size:20px;
+      color:var(--text);
+      letter-spacing:-.2px;
+    }
+
+    .controls{
+      margin-top:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.52));
+      border:1px solid var(--stroke);
+      border-radius: 18px;
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .progressWrap{
+      flex:1;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:0 10px;
+    }
+    .progressTrack{
+      height:10px;
+      border-radius:999px;
+      background:rgba(15,23,42,.06);
+      border:1px solid rgba(185,200,218,.7);
+      overflow:hidden;
+      flex:1;
+    }
+    .progressBar{
+      height:100%;
+      width:10%;
+      border-radius:999px;
+      background:linear-gradient(90deg, var(--brand2), var(--brand));
+      box-shadow: 0 0 0 6px rgba(11,102,195,.10) inset;
+    }
+    .hint{
+      color:var(--muted);
+      font-size:12px;
+      white-space:nowrap;
+    }
+
+    .revealRow{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    .revealBox{
+      background:rgba(255,255,255,.70);
+      border:1px dashed rgba(11,102,195,.35);
+      border-radius:16px;
+      padding:12px 14px;
+      margin-top:10px;
+      display:none;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+
+    .penCanvas{
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      z-index:50;
+    }
+
+    .select{
+      border:1px solid var(--stroke2);
+      background:rgba(255,255,255,.75);
+      border-radius:999px;
+      padding:8px 10px;
+      font-weight:700;
+      color:var(--brand2);
+      font-size:12px;
+      outline:none;
+      cursor:pointer;
+    }
+
+    @media (max-width: 1100px){
+      .slide{ grid-template-columns: 1fr; min-height: unset; }
+      .right .media{ height: 300px; }
+      .actions{ min-width: unset; }
+      .brand{ min-width: unset; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <div class="topbar">
+      <div class="brand">
+        <img id="logo" src="cenfotec-logo.png" alt="Universidad CENFOTEC"/>
+        <div class="txt">
+          <b id="topTitle">Hardware de computadoras personales</b>
+          <span id="topSub">Tema 1 — Fundamentos (clase virtual)</span>
+        </div>
+      </div>
+
+      <div class="topcenter">
+        <div class="counterPill"><span class="dot"></span><span id="counterTxt">01 / 13</span></div>
+      </div>
+
+      <div class="actions">
+        <div class="pill"><span class="miniDot"></span> <span>Sesión virtual</span></div>
+        <div class="pill"><span class="miniDot" style="background:rgba(11,102,195,.35)"></span> <span>Receso 15 min</span></div>
+
+        <button class="btn primary" id="penToggle">Lápiz</button>
+        <button class="btn danger" id="penClear">Borrar</button>
+
+        <select class="select" id="penSize" title="Grosor">
+          <option value="3">Fino</option>
+          <option value="5" selected>Medio</option>
+          <option value="8">Grueso</option>
+          <option value="12">Extra</option>
+        </select>
+
+        <select class="select" id="penColor" title="Color">
+          <option value="#0b66c3" selected>Azul</option>
+          <option value="#0f172a">Negro</option>
+          <option value="#dc2626">Rojo</option>
+          <option value="#16a34a">Verde</option>
+          <option value="#f59e0b">Amarillo</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="deck">
+      <canvas id="penCanvas" class="penCanvas"></canvas>
+
+      <div class="slide">
+        <div class="left">
+          <div class="kicker">
+            <div class="bar"></div>
+            <span id="kicker">CURSO</span>
+          </div>
+          <h1 id="title">TI-311 · Introducción al Soporte Técnico I</h1>
+          <p class="desc" id="desc">Curso orientado al desarrollo de criterio técnico para diagnóstico, documentación y propuesta de soluciones basadas en evidencia.</p>
+
+          <div id="leftBlocks"></div>
+        </div>
+
+        <div class="right">
+          <div class="media">
+            <img id="slideImg" alt=""/>
+            <div class="placeholder" id="placeholder">
+              Colocá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
+              (Luego te voy pidiendo una por una qué imagen buscar.)
+            </div>
+          </div>
+
+          <div class="rightBottom" id="rightBottom"></div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="nav">
+          <button class="btn" id="prevBtn">←</button>
+          <button class="btn primary" id="nextBtn">Siguiente →</button>
+        </div>
+
+        <div class="progressWrap">
+          <div class="progressTrack"><div class="progressBar" id="progressBar"></div></div>
+          <div class="hint">Teclas: ← → / Espacio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  function pad2(n){ return String(n).padStart(2, "0"); }
+
+  
+const slides = [
+  {
+    topTitle: "Aspectos avanzados de hardware",
+    topSub: "Tema 3 — Clase 3 (virtual)",
+    kicker: "CLASE 3",
+    title: "Aspectos avanzados de hardware",
+    desc: "POST, BIOS/UEFI, energía, arquitectura de CPU, RAID y conectividad avanzada para diagnóstico técnico.",
+    leftBlocksHTML: `
+      <div class="grid">
+        <div class="card">
+          <strong>Hoy vas a trabajar</strong>
+          <ul>
+            <li>Arranque del sistema: POST, BIOS, CMOS y UEFI.</li>
+            <li>Configuración clave de BIOS/UEFI.</li>
+            <li>Voltaje, protección y fluctuaciones de potencia.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>También veremos</strong>
+          <ul>
+            <li>Arquitectura y funcionamiento de la CPU.</li>
+            <li>RAID básico aplicado.</li>
+            <li>Puertos, conectores, cables y monitores.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Pregunta de arranque</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.6">
+          Si una PC enciende pero no llega al sistema operativo, ¿en qué etapa del arranque creés que podría estar fallando?
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Tema", av:"Arranque avanzado", bk:"Meta", bv:"Diagnosticar mejor" },
+    imgFile: "01.png"
+  },
+  {
+    topTitle: "Aspectos avanzados de hardware",
+    topSub: "Tema 3 — Mapa de la clase",
+    kicker: "MAPA",
+    title: "Ruta de la clase",
+    desc: "Vamos de la secuencia de arranque al diagnóstico técnico aplicado.",
+    leftBlocksHTML: `
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Bloque 1</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          POST, BIOS, CMOS, UEFI y parámetros críticos de configuración.
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Bloque 2</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Voltaje, protección, CPU, RAID, conectividad y caso práctico.
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Foco docente</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          No memorizar nombres: relacionar síntoma → etapa → evidencia → prueba.
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Secuencia", av:"Arranque → Evidencia", bk:"Enfoque", bv:"Criterio técnico" },
+    imgFile: "02.png"
+  },
+  {
+    topTitle: "POST, BIOS, CMOS y UEFI",
+    topSub: "Tema 3 — Arranque del ordenador",
+    kicker: "ARRANQUE",
+    title: "POST, BIOS, CMOS y UEFI: qué hace cada uno",
+    desc: "Son conceptos relacionados, pero no significan lo mismo.",
+    leftBlocksHTML: `
+      <div class="grid">
+        <div class="card">
+          <strong>POST</strong>
+          <ul>
+            <li>Power-On Self Test.</li>
+            <li>Verifica hardware esencial para arrancar.</li>
+            <li>Si falla, pueden aparecer beep codes o LEDs debug.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>BIOS / UEFI</strong>
+          <ul>
+            <li>Firmware que inicializa hardware y entrega control al cargador.</li>
+            <li>UEFI es la evolución moderna de BIOS.</li>
+            <li>Permite configurar arranque, seguridad y parámetros del sistema.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">CMOS</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Memoria donde se guardan parámetros básicos del firmware. La batería CMOS mantiene fecha, hora y ajustes cuando el equipo está apagado.
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Clave", av:"Firmware", bk:"Primera prueba", bv:"POST" },
+    imgFile: "03.png"
+  },
+  {
+    topTitle: "POST y secuencia de arranque",
+    topSub: "Tema 3 — Secuencia lógica",
+    kicker: "SECUENCIA",
+    title: "Del botón de encendido al sistema operativo",
+    desc: "Entender la secuencia ayuda a ubicar dónde se corta el proceso.",
+    leftBlocksHTML: `
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Ruta simplificada</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.8">
+          1. Power SW → señal a motherboard<br>
+          2. PSU entrega energía estable<br>
+          3. CPU + RAM + video pasan POST<br>
+          4. BIOS/UEFI detecta unidades de arranque<br>
+          5. Bootloader carga sistema operativo
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Pregunta diagnóstica</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Si hay ventiladores pero no video, probablemente el fallo ocurre antes del paso 4. ¿Qué evidencia lo apoyaría?
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Vista", av:"Secuencial", bk:"Uso", bv:"Ubicar fallas" },
+    imgFile: "04.png"
+  },
+  {
+    topTitle: "Configuración del BIOS / UEFI",
+    topSub: "Tema 3 — Ajustes críticos",
+    kicker: "BIOS/UEFI",
+    title: "Configuraciones que sí importan",
+    desc: "No todo se toca. Hay parámetros clave que impactan arranque, compatibilidad y estabilidad.",
+    leftBlocksHTML: `
+      <div class="grid">
+        <div class="card">
+          <strong>Ajustes frecuentes</strong>
+          <ul>
+            <li>Boot order / unidad de arranque.</li>
+            <li>Fecha y hora del sistema.</li>
+            <li>XMP / EXPO para RAM.</li>
+            <li>Modo SATA / NVMe según plataforma.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Seguridad y firmware</strong>
+          <ul>
+            <li>Secure Boot.</li>
+            <li>TPM / fTPM.</li>
+            <li>Actualización de BIOS.</li>
+            <li>Reset a valores por defecto.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Criterio</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Antes de cambiar parámetros, documentá el valor actual. En soporte, tocar BIOS sin registro complica el diagnóstico.
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Meta", av:"Configurar seguro", bk:"Error común", bv:"Cambiar sin registrar" },
+    imgFile: "05.png"
+  },
+  {
+    topTitle: "BIOS / UEFI",
+    topSub: "Tema 3 — Síntomas comunes",
+    kicker: "SÍNTOMAS",
+    title: "Señales de problema en BIOS/CMOS",
+    desc: "Hay fallos típicos que apuntan más al firmware o a CMOS que al sistema operativo.",
+    leftBlocksHTML: `
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Síntomas</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Fecha/hora se reinician constantemente.</li>
+          <li>No conserva el orden de arranque.</li>
+          <li>No detecta correctamente nueva RAM o CPU.</li>
+          <li>Mensaje de CMOS checksum / battery low.</li>
+        </ul>
+      </div>
+      <div class="bigcard">
+        <div class="title">Primera acción</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Verificar batería CMOS, restaurar valores por defecto y documentar versión de BIOS antes de actualizar.
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Sospecha", av:"Batería CMOS", bk:"Primera prueba", bv:"Load defaults" },
+    imgFile: "06.png"
+  },
+  {
+    topTitle: "Voltaje y protección",
+    topSub: "Tema 3 — Potencia y estabilidad",
+    kicker: "ENERGÍA",
+    title: "Voltaje, potencia, protección y fluctuaciones",
+    desc: "No todo problema de energía es una PSU dañada; también importa la calidad de la alimentación y la protección.",
+    leftBlocksHTML: `
+      <div class="grid">
+        <div class="card">
+          <strong>Conceptos</strong>
+          <ul>
+            <li>Voltaje: potencial eléctrico.</li>
+            <li>Corriente: flujo de carga.</li>
+            <li>Potencia: voltaje × corriente.</li>
+            <li>Picos y caídas afectan estabilidad.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Protección útil</strong>
+          <ul>
+            <li>Regleta con supresión real.</li>
+            <li>UPS / respaldo.</li>
+            <li>PSU con OVP, OCP, SCP, OTP.</li>
+            <li>Toma eléctrica confiable.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Síntomas de fluctuación</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Reinicios aleatorios, apagados bajo carga, corrupción de datos o fallos intermitentes difíciles de repetir.
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Clave", av:"Estabilidad", bk:"Protección", bv:"UPS / OVP" },
+    imgFile: "07.png"
+  },
+  {
+    topTitle: "Arquitectura de CPU",
+    topSub: "Tema 3 — Funcionamiento interno",
+    kicker: "CPU",
+    title: "Arquitectura y funcionamiento de la CPU",
+    desc: "Para diagnosticar bien, no basta con saber el nombre del procesador: hay que entender cómo trabaja.",
+    leftBlocksHTML: `
+      <div class="grid">
+        <div class="card">
+          <strong>Elementos clave</strong>
+          <ul>
+            <li>Núcleos e hilos.</li>
+            <li>Frecuencia base y boost.</li>
+            <li>Cachés L1, L2, L3.</li>
+            <li>Controlador de memoria.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Qué afecta el rendimiento</strong>
+          <ul>
+            <li>Carga de trabajo.</li>
+            <li>Temperatura.</li>
+            <li>Consumo / TDP.</li>
+            <li>Plan de energía del sistema.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Pregunta útil</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          ¿Qué te conviene observar primero si la CPU no sube frecuencia: temperatura, energía o configuración del sistema?
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Riesgo", av:"Throttling", bk:"Dato", bv:"Caché / Boost" },
+    imgFile: "08.png"
+  },
+  {
+    topTitle: "CPU avanzada",
+    topSub: "Tema 3 — Arquitectura aplicada",
+    kicker: "ANÁLISIS",
+    title: "Qué leer y qué no leer en una CPU",
+    desc: "No todo dato del procesador es igual de útil para soporte técnico.",
+    leftBlocksHTML: `
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Sí importa</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Socket compatible.</li>
+          <li>TDP / consumo esperado.</li>
+          <li>Soporte de memoria.</li>
+          <li>Video integrado o no.</li>
+        </ul>
+      </div>
+      <div class="bigcard">
+        <div class="title">Importa menos al inicio</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Marketing de nombre comercial.</li>
+          <li>Boost máximo sin contexto.</li>
+          <li>Comparaciones sin misma carga.</li>
+        </ul>
+      </div>
+    `,
+    rightBadges: { ak:"Enfoque", av:"Compatibilidad", bk:"Evitar", bv:"Marketing" },
+    imgFile: "09.png"
+  },
+  {
+    topTitle: "RAID",
+    topSub: "Tema 3 — Almacenamiento avanzado",
+    kicker: "RAID",
+    title: "¿Qué es RAID y para qué sirve?",
+    desc: "RAID combina discos con distintos objetivos: velocidad, redundancia o ambos.",
+    leftBlocksHTML: `
+      <div class="grid">
+        <div class="card">
+          <strong>Idea base</strong>
+          <ul>
+            <li>RAID = Redundant Array of Independent Disks.</li>
+            <li>Puede implementarse por hardware o software.</li>
+            <li>No reemplaza un backup.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>¿Cuándo pensar en RAID?</strong>
+          <ul>
+            <li>Necesidad de disponibilidad.</li>
+            <li>Volumen de datos importante.</li>
+            <li>Laboratorio, servidor o almacenamiento compartido.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Advertencia</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Si se rompe un arreglo o se configura mal, la recuperación puede ser compleja. RAID no significa “no se puede perder información”.
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"No es", av:"Backup", bk:"Objetivo", bv:"Velocidad / Redundancia" },
+    imgFile: "10.png"
+  },
+  {
+    topTitle: "RAID",
+    topSub: "Tema 3 — Niveles básicos",
+    kicker: "NIVELES",
+    title: "RAID 0, 1, 5 y 10",
+    desc: "No hace falta dominar todos los niveles; sí entender la lógica de los más comunes.",
+    leftBlocksHTML: `
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Resumen rápido</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.8">
+          <b>RAID 0:</b> velocidad, sin redundancia.<br>
+          <b>RAID 1:</b> espejo, alta seguridad básica.<br>
+          <b>RAID 5:</b> equilibrio entre capacidad y tolerancia a fallos.<br>
+          <b>RAID 10:</b> velocidad + redundancia, más costoso.
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Pregunta técnica</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Si tu prioridad es no perder disponibilidad ante falla de un disco, ¿RAID 0 tendría sentido? ¿por qué?
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Evitar", av:"RAID 0 para seguridad", bk:"Elegir", bv:"Objetivo primero" },
+    imgFile: "11.png"
+  },
+  {
+    topTitle: "Conectividad avanzada",
+    topSub: "Tema 3 — Puertos y conectores",
+    kicker: "PUERTOS",
+    title: "Puertos, conectores y cables: leer antes de conectar",
+    desc: "En soporte, muchas fallas son físicas: cable incorrecto, puerto equivocado o adaptador limitante.",
+    leftBlocksHTML: `
+      <div class="grid">
+        <div class="card">
+          <strong>Video</strong>
+          <ul>
+            <li>HDMI</li>
+            <li>DisplayPort</li>
+            <li>VGA (legado)</li>
+            <li>USB-C con video según equipo</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Datos / periféricos</strong>
+          <ul>
+            <li>USB-A / USB-C</li>
+            <li>RJ45</li>
+            <li>Audio 3.5 mm</li>
+            <li>SATA interno</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Regla útil</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Un adaptador puede resolver compatibilidad física, pero no siempre compatibilidad funcional o de ancho de banda.
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Clave", av:"Puerto correcto", bk:"Error común", bv:"Adaptador limitante" },
+    imgFile: "12.png"
+  },
+  {
+    topTitle: "Monitores",
+    topSub: "Tema 3 — Salida de video",
+    kicker: "MONITORES",
+    title: "Monitores: resolución, frecuencia y conexión",
+    desc: "No todo problema de imagen viene del monitor, pero entenderlo ayuda a descartar rápido.",
+    leftBlocksHTML: `
+      <div class="grid">
+        <div class="card">
+          <strong>Parámetros básicos</strong>
+          <ul>
+            <li>Resolución nativa.</li>
+            <li>Tasa de refresco.</li>
+            <li>Tipo de entrada disponible.</li>
+            <li>Fuente de alimentación propia.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <strong>Errores típicos</strong>
+          <ul>
+            <li>Elegir entrada incorrecta.</li>
+            <li>Cable defectuoso.</li>
+            <li>Conectar a salida equivocada.</li>
+            <li>Resolución/frecuencia no soportada.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Pregunta rápida</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          Si una PC tiene GPU dedicada, ¿dónde conviene conectar el monitor: a la motherboard o a la GPU?
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Primera prueba", av:"Entrada correcta", bk:"Conector", bv:"GPU > Motherboard" },
+    imgFile: "13.png"
+  },
+  {
+    topTitle: "Caso práctico",
+    topSub: "Tema 3 — Diagnóstico guiado",
+    kicker: "CASO",
+    title: "La PC enciende, hace POST parcial y no arranca el sistema",
+    desc: "Vamos a separar fallo de hardware esencial, firmware y unidad de arranque.",
+    leftBlocksHTML: `
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Situación</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          El equipo muestra logo inicial o entra a BIOS, pero no carga el sistema operativo. En equipos, propongan 3 hipótesis y una prueba para cada una.
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Posibles líneas</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Orden de arranque incorrecto.</li>
+          <li>Unidad no detectada o fallando.</li>
+          <li>Modo de arranque / Secure Boot / BIOS alterado.</li>
+          <li>Corrupción del bootloader.</li>
+        </ul>
+      </div>
+    `,
+    rightBadges: { ak:"Separar", av:"POST vs SO", bk:"Meta", bv:"Hipótesis con prueba" },
+    imgFile: "14.png"
+  },
+  {
+    topTitle: "Actividad de comprobación",
+    topSub: "Tema 3 — Trabajo en clase",
+    kicker: "ACTIVIDAD",
+    title: "Diagnóstico por etapas de arranque",
+    desc: "No todas las fallas pertenecen al mismo nivel. El objetivo es ubicar la etapa antes de actuar.",
+    leftBlocksHTML: `
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Trabajo en equipos</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.8">
+          Cada equipo recibe un síntoma:<br>
+          A) Sin POST<br>
+          B) POST pero sin video útil<br>
+          C) BIOS detecta hardware pero no arranca SO<br>
+          D) Reinicios aleatorios bajo carga
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Entregable</div>
+        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
+          <li>Etapa del fallo.</li>
+          <li>3 hipótesis técnicas.</li>
+          <li>1 evidencia por hipótesis.</li>
+          <li>Orden recomendado de pruebas.</li>
+        </ul>
+      </div>
+    `,
+    rightBadges: { ak:"Meta", av:"Ubicar etapa", bk:"Resultado", bv:"Pruebas ordenadas" },
+    imgFile: "15.png"
+  },
+  {
+    topTitle: "Cierre",
+    topSub: "Tema 3 — Síntesis",
+    kicker: "CIERRE",
+    title: "Checklist final de la clase",
+    desc: "Antes de cambiar piezas, ubicá el problema en una etapa y buscá evidencia.",
+    leftBlocksHTML: `
+      <div class="bigcard" style="margin-top:0">
+        <div class="title">Checklist</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.8">
+          ✓ ¿Llega o no llega a POST?<br>
+          ✓ ¿La BIOS/UEFI detecta hardware crítico?<br>
+          ✓ ¿La energía es estable?<br>
+          ✓ ¿La unidad de arranque existe y está en el orden correcto?<br>
+          ✓ ¿Tengo evidencia antes de intervenir?
+        </div>
+      </div>
+      <div class="bigcard">
+        <div class="title">Idea fuerza</div>
+        <div style="color:var(--muted);font-size:13px;line-height:1.7">
+          En soporte avanzado no gana quien adivina rápido. Gana quien separa bien la etapa, la causa probable y la prueba correcta.
+        </div>
+      </div>
+    `,
+    rightBadges: { ak:"Clave", av:"Etapa + evidencia", bk:"Próximo tema", bv:"Más configuración" },
+    imgFile: "16.png"
+  }
+];
+const elTopTitle = document.getElementById("topTitle");
+  const elTopSub = document.getElementById("topSub");
+  const elCounter = document.getElementById("counterTxt");
+  const elKicker = document.getElementById("kicker");
+  const elTitle = document.getElementById("title");
+  const elDesc = document.getElementById("desc");
+  const elLeft = document.getElementById("leftBlocks");
+  const elRightBottom = document.getElementById("rightBottom");
+  const elImg = document.getElementById("slideImg");
+  const elPh = document.getElementById("placeholder");
+  const elProgress = document.getElementById("progressBar");
+
+  const prevBtn = document.getElementById("prevBtn");
+  const nextBtn = document.getElementById("nextBtn");
+
+  function setSlideImage(src){
+    if(!src){
+      elImg.style.display = "none";
+      elPh.style.display = "block";
+      elPh.innerHTML = `
+        Agregá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
+        (Esta slide queda pendiente de imagen. Luego solo poné el nombre en <b>imgFile</b>.)
+      `;
+      return;
+    }
+    elImg.src = src;
+    elImg.onload = () => {
+      elImg.style.display = "block";
+      elPh.style.display = "none";
+    };
+    elImg.onerror = () => {
+      elImg.style.display = "none";
+      elPh.style.display = "block";
+      elPh.textContent = "No se encontró la imagen: " + src + " (ponela en la misma carpeta del HTML).";
+    };
+  }
+
+  function renderBadges(b){
+    elRightBottom.innerHTML = "";
+    const mk = (label, value) => {
+      const d = document.createElement("div");
+      d.className = "miniCard";
+      d.innerHTML = `<div class="label">${label}</div><div class="value">${value}</div>`;
+      return d;
+    };
+    if(b && b.ak) elRightBottom.appendChild(mk(b.ak, b.av || ""));
+    if(b && b.bk) elRightBottom.appendChild(mk(b.bk, b.bv || ""));
+  }
+
+  function wireRevealButtons(){
+    document.querySelectorAll("[data-reveal]").forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.getAttribute("data-reveal");
+        const box = document.getElementById(id);
+        if(box) box.style.display = "block";
+      };
+    });
+    document.querySelectorAll("[data-hide]").forEach(btn => {
+      btn.onclick = () => {
+        const id = btn.getAttribute("data-hide");
+        const box = document.getElementById(id);
+        if(box) box.style.display = "none";
+      };
+    });
+  }
+
+  let idx = 0;
+
+  function render(){
+    const s = slides[idx];
+
+    elTopTitle.textContent = s.topTitle || "Hardware de computadoras personales";
+    elTopSub.textContent = s.topSub || "Tema 1 — Fundamentos (clase virtual)";
+
+    elCounter.textContent = `${pad2(idx+1)} / ${pad2(slides.length)}`;
+    elKicker.textContent = s.kicker || "";
+    elTitle.textContent = s.title || "";
+    elDesc.textContent = s.desc || "";
+
+    elLeft.innerHTML = s.leftBlocksHTML || "";
+    renderBadges(s.rightBadges || null);
+    setSlideImage(s.imgFile || "");
+
+    const pct = ((idx+1) / slides.length) * 100;
+    elProgress.style.width = pct + "%";
+
+    wireRevealButtons();
+    clearPen();
+  }
+
+  function next(){ idx = Math.min(slides.length - 1, idx + 1); render(); }
+  function prev(){ idx = Math.max(0, idx - 1); render(); }
+
+  nextBtn.addEventListener("click", next);
+  prevBtn.addEventListener("click", prev);
+
+  window.addEventListener("keydown", (e) => {
+    if(e.key === "ArrowRight" || e.key === " "){ e.preventDefault(); next(); }
+    if(e.key === "ArrowLeft"){ e.preventDefault(); prev(); }
+  });
+
+  const canvas = document.getElementById("penCanvas");
+  const penToggle = document.getElementById("penToggle");
+  const penClearBtn = document.getElementById("penClear");
+  const penSize = document.getElementById("penSize");
+  const penColor = document.getElementById("penColor");
+
+  let penOn = false;
+  let drawing = false;
+  let last = {x:0,y:0};
+
+  function resizeCanvas(){
+    const rect = document.querySelector(".deck").getBoundingClientRect();
+    canvas.width = Math.floor(rect.width * window.devicePixelRatio);
+    canvas.height = Math.floor(rect.height * window.devicePixelRatio);
+    canvas.style.width = rect.width + "px";
+    canvas.style.height = rect.height + "px";
+    const ctx = canvas.getContext("2d");
+    ctx.setTransform(window.devicePixelRatio,0,0,window.devicePixelRatio,0,0);
+  }
+
+  window.addEventListener("resize", () => { resizeCanvas(); });
+
+  function getLocalPos(ev){
+    const deck = document.querySelector(".deck");
+    const r = deck.getBoundingClientRect();
+    const x = (ev.clientX ?? (ev.touches && ev.touches[0].clientX)) - r.left;
+    const y = (ev.clientY ?? (ev.touches && ev.touches[0].clientY)) - r.top;
+    return {x, y};
+  }
+
+  function drawLine(a,b){
+    const ctx = canvas.getContext("2d");
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = penColor.value;
+    ctx.lineWidth = Number(penSize.value);
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+  }
+
+  function clearPen(){
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+  }
+
+  const deckEl = document.querySelector(".deck");
+
+  function onDown(ev){
+    if(!penOn) return;
+    drawing = true;
+    const p = getLocalPos(ev);
+    last = p;
+    ev.preventDefault();
+  }
+  function onMove(ev){
+    if(!penOn || !drawing) return;
+    const p = getLocalPos(ev);
+    drawLine(last, p);
+    last = p;
+    ev.preventDefault();
+  }
+  function onUp(){
+    drawing = false;
+  }
+
+  deckEl.addEventListener("mousedown", onDown);
+  deckEl.addEventListener("mousemove", onMove);
+  window.addEventListener("mouseup", onUp);
+
+  deckEl.addEventListener("touchstart", onDown, {passive:false});
+  deckEl.addEventListener("touchmove", onMove, {passive:false});
+  window.addEventListener("touchend", onUp);
+
+  penToggle.addEventListener("click", () => {
+    penOn = !penOn;
+    canvas.style.pointerEvents = penOn ? "auto" : "none";
+    penToggle.classList.toggle("on", penOn);
+  });
+
+  penClearBtn.addEventListener("click", () => clearPen());
+
+  resizeCanvas();
+  render();
+
+})();
+</script>
+</body>
+</html>
