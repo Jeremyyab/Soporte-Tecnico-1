@@ -1,0 +1,145 @@
+/* Estilo compartido: index, casos prácticos y proyecto (mismo look que las clases) */
+:root{
+  --bg1:#eaf1f8;
+  --bg2:#cfdceb;
+  --stroke:#cfd9e6;
+  --stroke2:#b9c8da;
+  --text:#0f172a;
+  --muted:#50607a;
+  --brand:#0b66c3;
+  --brand2:#0a4f96;
+  --ok:#16a34a;
+  --warn:#b45309;
+  --shadow:0 18px 45px rgba(15,23,42,.12);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color:var(--text);
+  line-height:1.6;
+  background:
+    radial-gradient(900px 500px at 30% 10%, #fff 0%, rgba(255,255,255,0) 60%),
+    radial-gradient(800px 450px at 75% 65%, #fff 0%, rgba(255,255,255,0) 55%),
+    linear-gradient(160deg, var(--bg1), var(--bg2));
+  min-height:100vh;
+  padding:22px 16px 48px;
+}
+.wrap{max-width:1040px;margin:0 auto}
+
+/* barra superior */
+.topbar{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  background:linear-gradient(180deg, rgba(255,255,255,.82), rgba(255,255,255,.6));
+  border:1px solid var(--stroke);border-radius:18px;padding:12px 16px;
+  box-shadow:0 10px 30px rgba(15,23,42,.06);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:40px;width:auto;display:block}
+.brand b{display:block;font-size:14px;color:var(--brand2);line-height:1.2}
+.brand span{font-size:12px;color:var(--muted)}
+.back{
+  text-decoration:none;font-weight:700;font-size:13px;color:var(--brand2);
+  border:1px solid var(--stroke2);background:rgba(255,255,255,.8);
+  padding:8px 14px;border-radius:999px;transition:.15s;
+}
+.back:hover{background:#fff;transform:translateY(-1px)}
+
+/* encabezado */
+.hero{
+  margin-top:16px;padding:28px;border-radius:24px;
+  background:linear-gradient(135deg, var(--brand2), var(--brand));
+  color:#fff;box-shadow:var(--shadow);
+}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;opacity:.85}
+.hero h1{margin:6px 0 8px;font-size:clamp(26px,4vw,38px);line-height:1.12;letter-spacing:-.5px}
+.hero p{margin:0;max-width:760px;opacity:.92}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.meta span{
+  background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+  padding:5px 12px;border-radius:999px;font-size:13px;font-weight:600;
+}
+
+/* secciones */
+.section{
+  margin-top:16px;padding:22px 24px;border-radius:22px;
+  background:rgba(255,255,255,.72);border:1px solid var(--stroke);
+  box-shadow:0 10px 30px rgba(15,23,42,.05);
+}
+.section h2{
+  margin:0 0 12px;font-size:20px;color:var(--brand2);
+  display:flex;align-items:center;gap:10px;
+}
+.section h2 .n{
+  display:inline-grid;place-items:center;width:30px;height:30px;border-radius:9px;
+  background:var(--brand);color:#fff;font-size:15px;flex:none;
+}
+.section h3{margin:18px 0 6px;font-size:16px;color:var(--text)}
+.section p{margin:6px 0}
+.section ul,.section ol{margin:6px 0;padding-left:22px}
+.section li{margin:4px 0}
+.muted{color:var(--muted)}
+
+/* ticket del cliente */
+.ticket{
+  border:1px solid var(--stroke2);border-left:6px solid var(--brand);
+  background:#fff;border-radius:14px;padding:14px 18px;margin:10px 0;
+}
+.ticket .head{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;font-size:13px;color:var(--muted);margin-bottom:6px}
+.ticket .head b{color:var(--text)}
+.ticket blockquote{margin:0;font-style:italic}
+
+/* tablas */
+.tbl-wrap{overflow-x:auto;margin:10px 0}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:14px}
+th,td{padding:9px 12px;border-bottom:1px solid var(--stroke);text-align:left;vertical-align:top}
+th{background:var(--brand2);color:#fff;font-weight:700;font-size:13px}
+tr:last-child td{border-bottom:none}
+td.c,th.c{text-align:center}
+.fill td{color:#94a3b8;font-style:italic}
+
+/* datos tipo pantalla */
+.screen{
+  background:#0f172a;color:#e2e8f0;border-radius:14px;padding:14px 18px;margin:10px 0;
+  font-family:Consolas, "Cascadia Mono", Menlo, monospace;font-size:13px;line-height:1.7;overflow-x:auto;
+}
+.screen .k{color:#93c5fd}
+.screen .bad{color:#fca5a5}
+.screen .ok{color:#86efac}
+
+/* tarjetas en grilla */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin:10px 0}
+.card{background:#fff;border:1px solid var(--stroke);border-radius:16px;padding:14px 16px}
+.card h4{margin:0 0 6px;font-size:15px;color:var(--brand2)}
+
+/* avisos */
+.note{border-radius:14px;padding:12px 16px;margin:10px 0;font-size:14px}
+.note.info{background:#e0ecf9;border:1px solid #b9d3f0}
+.note.warn{background:#fef3c7;border:1px solid #fcd34d}
+
+/* pasos */
+.steps{counter-reset:s;list-style:none;padding:0 !important}
+.steps>li{counter-increment:s;position:relative;padding:12px 14px 12px 54px;background:#fff;border:1px solid var(--stroke);border-radius:14px;margin:10px 0}
+.steps>li::before{
+  content:counter(s);position:absolute;left:14px;top:12px;width:28px;height:28px;border-radius:8px;
+  background:var(--brand);color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px;
+}
+.steps>li b.t{display:block;margin-bottom:2px}
+
+/* revelar */
+details.reveal{margin:12px 0;border:1px dashed rgba(11,102,195,.45);border-radius:14px;background:#fff}
+details.reveal summary{cursor:pointer;padding:12px 16px;font-weight:700;color:var(--brand2);list-style:none}
+details.reveal summary::-webkit-details-marker{display:none}
+details.reveal summary::before{content:"▸ ";}
+details.reveal[open] summary::before{content:"▾ ";}
+details.reveal .in{padding:0 16px 14px}
+
+.footer{margin-top:26px;text-align:center;font-size:13px;color:var(--muted)}
+
+@media print{
+  body{background:#fff;padding:0}
+  .back{display:none}
+  .section,.hero{box-shadow:none}
+  details.reveal .in{display:block}
+}

@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="800" rx="36" fill="#f6f9fd"/>
+  <text x="600" y="84" text-anchor="middle" font-size="42" font-weight="800" fill="#0a4f96">Puertos que vas a encontrar</text>
+  <g font-size="20" font-weight="700">
+    <rect x="330" y="112" width="20" height="20" rx="4" fill="#0b66c3"/><text x="358" y="129" fill="#0f172a">Datos</text>
+    <rect x="460" y="112" width="20" height="20" rx="4" fill="#7c3aed"/><text x="488" y="129" fill="#0f172a">Video</text>
+    <rect x="590" y="112" width="20" height="20" rx="4" fill="#16a34a"/><text x="618" y="129" fill="#0f172a">Red</text>
+    <rect x="700" y="112" width="20" height="20" rx="4" fill="#f59e0b"/><text x="728" y="129" fill="#0f172a">Audio</text>
+    <rect x="830" y="112" width="20" height="20" rx="4" fill="#64748b"/><text x="858" y="129" fill="#0f172a">Legado</text>
+  </g>
+
+  <!-- fila 1 -->
+  <g transform="translate(60 170)">
+    <rect width="250" height="270" rx="22" fill="#fff" stroke="#0b66c3" stroke-width="4"/>
+    <rect x="55" y="70" width="140" height="56" rx="4" fill="#cbd5e1" stroke="#334155" stroke-width="5"/>
+    <rect x="70" y="80" width="110" height="18" fill="#0b66c3"/>
+    <text x="125" y="190" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">USB-A</text>
+    <text x="125" y="225" text-anchor="middle" font-size="19" fill="#50607a">Periféricos, memorias</text>
+  </g>
+  <g transform="translate(340 170)">
+    <rect width="250" height="270" rx="22" fill="#fff" stroke="#0b66c3" stroke-width="4"/>
+    <rect x="65" y="78" width="120" height="40" rx="20" fill="#cbd5e1" stroke="#334155" stroke-width="5"/>
+    <rect x="88" y="92" width="74" height="12" rx="6" fill="#0b66c3"/>
+    <text x="125" y="190" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">USB-C</text>
+    <text x="125" y="225" text-anchor="middle" font-size="19" fill="#50607a">Datos, carga y (a veces)</text>
+    <text x="125" y="250" text-anchor="middle" font-size="19" fill="#50607a">video: revisar el ícono</text>
+  </g>
+  <g transform="translate(620 170)">
+    <rect width="250" height="270" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="4"/>
+    <path d="M45 72 h160 v34 l-18 20 h-124 l-18 -20z" fill="#cbd5e1" stroke="#334155" stroke-width="5" stroke-linejoin="round"/>
+    <rect x="68" y="84" width="114" height="14" fill="#7c3aed"/>
+    <text x="125" y="190" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">HDMI</text>
+    <text x="125" y="225" text-anchor="middle" font-size="19" fill="#50607a">Video + audio digital</text>
+  </g>
+  <g transform="translate(900 170)">
+    <rect width="250" height="270" rx="22" fill="#fff" stroke="#7c3aed" stroke-width="4"/>
+    <path d="M45 70 h160 v56 h-138 l-22 -22z" fill="#cbd5e1" stroke="#334155" stroke-width="5" stroke-linejoin="round"/>
+    <rect x="72" y="86" width="116" height="14" fill="#7c3aed"/>
+    <text x="125" y="190" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">DisplayPort</text>
+    <text x="125" y="225" text-anchor="middle" font-size="19" fill="#50607a">Video digital, monitores</text>
+    <text x="125" y="250" text-anchor="middle" font-size="19" fill="#50607a">de alta frecuencia</text>
+  </g>
+
+  <!-- fila 2 -->
+  <g transform="translate(200 470)">
+    <rect width="250" height="270" rx="22" fill="#fff" stroke="#16a34a" stroke-width="4"/>
+    <path d="M70 60 h110 v70 h-30 v18 h-50 v-18 h-30z" fill="#cbd5e1" stroke="#334155" stroke-width="5" stroke-linejoin="round"/>
+    <g stroke="#16a34a" stroke-width="5"><line x1="88" y1="66" x2="88" y2="84"/><line x1="100" y1="66" x2="100" y2="84"/><line x1="112" y1="66" x2="112" y2="84"/><line x1="124" y1="66" x2="124" y2="84"/><line x1="136" y1="66" x2="136" y2="84"/><line x1="148" y1="66" x2="148" y2="84"/><line x1="160" y1="66" x2="160" y2="84"/></g>
+    <text x="125" y="200" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">RJ45 (Ethernet)</text>
+    <text x="125" y="235" text-anchor="middle" font-size="19" fill="#50607a">Red cableada</text>
+  </g>
+  <g transform="translate(475 470)">
+    <rect width="250" height="270" rx="22" fill="#fff" stroke="#f59e0b" stroke-width="4"/>
+    <circle cx="80" cy="100" r="30" fill="#22c55e" stroke="#334155" stroke-width="4"/><circle cx="80" cy="100" r="10" fill="#0f172a"/>
+    <circle cx="170" cy="100" r="30" fill="#f472b6" stroke="#334155" stroke-width="4"/><circle cx="170" cy="100" r="10" fill="#0f172a"/>
+    <text x="125" y="200" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">Audio 3.5 mm</text>
+    <text x="125" y="235" text-anchor="middle" font-size="19" fill="#50607a">Verde: salida · Rosado: mic</text>
+  </g>
+  <g transform="translate(750 470)">
+    <rect width="250" height="270" rx="22" fill="#fff" stroke="#64748b" stroke-width="4"/>
+    <path d="M40 66 h170 l-16 64 h-138z" fill="#93c5fd" stroke="#334155" stroke-width="5" stroke-linejoin="round"/>
+    <g fill="#334155"><circle cx="70" cy="84" r="5"/><circle cx="95" cy="84" r="5"/><circle cx="120" cy="84" r="5"/><circle cx="145" cy="84" r="5"/><circle cx="170" cy="84" r="5"/><circle cx="80" cy="100" r="5"/><circle cx="105" cy="100" r="5"/><circle cx="130" cy="100" r="5"/><circle cx="155" cy="100" r="5"/><circle cx="72" cy="116" r="5"/><circle cx="97" cy="116" r="5"/><circle cx="122" cy="116" r="5"/><circle cx="147" cy="116" r="5"/><circle cx="172" cy="116" r="5"/></g>
+    <text x="125" y="200" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">VGA</text>
+    <text x="125" y="235" text-anchor="middle" font-size="19" fill="#50607a">Video analógico (antiguo)</text>
+  </g>
+</svg>

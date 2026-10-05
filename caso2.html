@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caso práctico 2 · La actualización que no encaja</title>
+<link rel="stylesheet" href="curso.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">
+      <img src="cenfotec-logo.png" alt="Universidad CENFOTEC">
+      <div><b>TI-311 · Introducción al Soporte Técnico I</b><span>Caso práctico 2 · Clase 2</span></div>
+    </div>
+    <a class="back" href="index.html">← Volver al curso</a>
+  </div>
+
+  <header class="hero">
+    <div class="kicker">Caso práctico 2 · Ensamblaje y compatibilidad</div>
+    <h1>La actualización que no encaja</h1>
+    <p>Un cliente compró piezas nuevas sin revisar compatibilidad. Antes de instalar nada, ustedes auditan la compra, corrigen la lista y dejan el procedimiento de armado listo.</p>
+    <div class="meta">
+      <span>Equipos del proyecto (3–4 personas)</span>
+      <span>≈ 40 min al final de la clase</span>
+      <span>Valor: 15 %</span>
+      <span>Entrega: PDF antes de la Clase 3</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>La situación</h2>
+    <div class="ticket">
+      <div class="head"><span><b>Solicitud de servicio</b> · Cliente particular</span><span>Taller de soporte</span></div>
+      <blockquote>“Estudio diseño y quiero editar video en 1080p y jugar algo liviano. Un amigo me recomendó estas piezas y ya las compré. ¿Me las instalan en mi computadora? No quiero gastar más de lo necesario.”</blockquote>
+      <p class="muted" style="margin:8px 0 0">— Daniel Vargas</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>La computadora actual</h2>
+    <p>Datos tomados con CPU-Z y revisando el gabinete:</p>
+    <div class="screen">
+<span class="k">CPU</span>          AMD Ryzen 5 3400G · Socket AM4 · 4 núcleos / 8 hilos · video integrado Radeon Vega 11<br>
+<span class="k">Placa madre</span>  Chipset AMD B450 · formato Micro-ATX · BIOS versión de 2019<br>
+<span class="k">Memoria</span>      2 × 4 GB DDR4-2666 (dual channel)<br>
+<span class="k">Disco</span>        HDD 1 TB SATA<br>
+<span class="k">Fuente</span>       Genérica "500 W", sin certificación 80 PLUS<br>
+<span class="k">Gabinete</span>     Mini torre Micro-ATX · espacio para tarjeta de video de hasta 240 mm
+    </div>
+
+    <h3>Ficha técnica de la placa madre (resumen del manual)</h3>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Elemento</th><th>Especificación</th></tr>
+        <tr><td>Socket</td><td>AM4</td></tr>
+        <tr><td>CPU soportados</td><td>Ryzen 1000, 2000 y 3000 con la BIOS de fábrica. Ryzen 5000 <b>requiere actualizar la BIOS</b> a una versión de 2021 o posterior.</td></tr>
+        <tr><td>Memoria</td><td>2 ranuras DIMM <b>DDR4</b>, máximo 64 GB, hasta 3200 MHz</td></tr>
+        <tr><td>Ranura M.2</td><td>1 × M.2 llave M, <b>solo NVMe</b> (PCIe 3.0 x4). No acepta SSD M.2 SATA.</td></tr>
+        <tr><td>SATA</td><td>4 puertos SATA 6 Gb/s</td></tr>
+        <tr><td>Expansión</td><td>1 × PCIe 3.0 x16 · 1 × PCIe x1</td></tr>
+        <tr><td>Video integrado</td><td>HDMI y VGA (solo funcionan con CPU que tengan video integrado)</td></tr>
+      </table>
+    </div>
+
+    <h3>Conectores de la fuente actual</h3>
+    <p>1 × ATX 24 pines · 1 × EPS 4+4 pines (CPU) · 2 × SATA · 1 × Molex · <b>ningún conector PCIe</b> de 6 u 8 pines.</p>
+  </section>
+
+  <section class="section">
+    <h2>Lo que Daniel compró</h2>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>#</th><th>Pieza</th><th>Datos del fabricante</th></tr>
+        <tr><td class="c">1</td><td>AMD Ryzen 5 7600</td><td>Socket AM5 · solo memoria DDR5 · 65 W · trae video integrado básico</td></tr>
+        <tr><td class="c">2</td><td>Memoria 2 × 16 GB DDR5-6000</td><td>Módulos DIMM DDR5</td></tr>
+        <tr><td class="c">3</td><td>SSD M.2 2280 de 1 TB</td><td>Protocolo <b>SATA</b> · llave B+M</td></tr>
+        <tr><td class="c">4</td><td>NVIDIA GeForce RTX 4060</td><td>115 W · 1 conector PCIe de 8 pines · fuente recomendada: 550 W · largo de este modelo: 245 mm</td></tr>
+        <tr><td class="c">5</td><td>Pasta térmica</td><td>—</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Lo que tienen que hacer</h2>
+    <ol class="steps">
+      <li><b class="t">Auditoría de compatibilidad.</b>Completen la tabla de abajo para las 5 piezas. En “Motivo” citen el dato exacto de la ficha que lo demuestra. Ojo: una pieza puede tener más de un problema.</li>
+      <li><b class="t">Elijan una ruta y justifíquenla.</b>
+        <div class="grid2">
+          <div class="card"><h4>Ruta A · Quedarse en AM4</h4>Devolver lo incompatible y comprar piezas que sí sirvan en la placa actual.</div>
+          <div class="card"><h4>Ruta B · Migrar a AM5</h4>Aprovechar el CPU y la RAM comprados y cambiar lo que haga falta para que funcionen.</div>
+        </div>
+        Para la ruta elegida, armen la lista final de piezas (marca y modelo concretos) y busquen el precio en al menos una tienda de Costa Rica, con la fecha de consulta. Expliquen por qué esa ruta es mejor para Daniel que la otra.</li>
+      <li><b class="t">Cálculo de la fuente.</b>Sumen el consumo de CPU + GPU + 100 W para el resto del sistema, apliquen un margen de 30–40 % y elijan una potencia comercial. Indiquen además los conectores que debe traer y la certificación 80 PLUS mínima que recomiendan.</li>
+      <li><b class="t">Procedimiento de armado y BIOS.</b>Escriban el paso a paso de la instalación en orden, desde apagar el equipo hasta el primer arranque. Incluyan la protección ESD, el momento correcto de actualizar la BIOS (si su ruta lo requiere) y la activación del perfil de memoria (XMP/EXPO).</li>
+      <li><b class="t">Evidencia de que quedó bien.</b>Indiquen qué pestañas de CPU-Z y qué gráficos del Administrador de tareas capturarían para demostrarle a Daniel que todo se instaló y funciona como se esperaba.</li>
+    </ol>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>#</th><th>Pieza</th><th>¿Compatible?</th><th>Motivo (dato de la ficha)</th><th>Qué pasaría si se instala así</th></tr>
+        <tr class="fill"><td class="c">1</td><td>Ryzen 5 7600</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td class="c">2</td><td>2 × 16 GB DDR5</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td class="c">3</td><td>SSD M.2 SATA</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td class="c">4</td><td>RTX 4060</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td class="c">5</td><td>Pasta térmica</td><td>…</td><td>…</td><td>…</td></tr>
+      </table>
+    </div>
+    <div class="note warn"><b>Para pensar:</b> si eligen la Ruta A con un Ryzen 5000, ¿con qué procesador se actualiza la BIOS? Si eligen un modelo sin video integrado, ¿qué pasa con las salidas HDMI/VGA de la placa?</div>
+  </section>
+
+  <section class="section">
+    <h2>Qué entregan</h2>
+    <ul>
+      <li><b>Un PDF por equipo</b> (máximo 4 páginas) con los puntos 1 a 5 en orden y los nombres de todos los integrantes.</li>
+      <li>La tabla de compatibilidad completa y la lista final con precios y fecha de consulta.</li>
+      <li>Nombre del archivo: <code>Caso2_Equipo#.pdf</code>.</li>
+      <li>Plazo: antes del inicio de la Clase 3.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Rúbrica (100 puntos = 15 % de la nota)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Criterio</th><th class="c">Puntos</th><th>Qué se espera</th></tr>
+        <tr><td>Auditoría de compatibilidad</td><td class="c">30</td><td>Detectan todos los problemas y los respaldan con el dato exacto de la ficha.</td></tr>
+        <tr><td>Ruta y lista corregida</td><td class="c">20</td><td>Lista compatible, con modelos y precios reales; la elección de ruta está justificada.</td></tr>
+        <tr><td>Cálculo de la fuente</td><td class="c">15</td><td>Cálculo correcto con margen, conectores y certificación adecuados.</td></tr>
+        <tr><td>Procedimiento de armado y BIOS</td><td class="c">20</td><td>Pasos completos, en orden, con ESD, BIOS y perfil de memoria.</td></tr>
+        <tr><td>Evidencia de verificación</td><td class="c">15</td><td>Capturas pertinentes que prueban cada cambio.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <div class="footer">Universidad CENFOTEC · TI-311 · Ing. Jeremy Alvarado Blanco</div>
+</div>
+</body>
+</html>

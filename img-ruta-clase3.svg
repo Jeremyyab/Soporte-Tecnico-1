@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="800" rx="36" fill="#f6f9fd"/>
+  <text x="600" y="84" text-anchor="middle" font-size="42" font-weight="800" fill="#0a4f96">Ruta de la clase</text>
+  <path d="M170 260 H1030 M1030 260 Q1100 260 1100 340 V420 Q1100 500 1030 500 H170" fill="none" stroke="#cfdceb" stroke-width="18" stroke-linecap="round"/>
+
+  <g text-anchor="middle">
+    <g transform="translate(170 260)">
+      <circle r="62" fill="#0a4f96"/><text y="14" font-size="40" font-weight="900" fill="#fff">1</text>
+      <text y="110" font-size="26" font-weight="800" fill="#0f172a">Arranque</text>
+      <text y="142" font-size="20" fill="#50607a">POST · BIOS · CMOS · UEFI</text>
+    </g>
+    <g transform="translate(455 260)">
+      <circle r="62" fill="#0b66c3"/><text y="14" font-size="40" font-weight="900" fill="#fff">2</text>
+      <text y="110" font-size="26" font-weight="800" fill="#0f172a">Configuración</text>
+      <text y="142" font-size="20" fill="#50607a">ajustes que sí importan</text>
+    </g>
+    <g transform="translate(740 260)">
+      <circle r="62" fill="#0b66c3"/><text y="14" font-size="40" font-weight="900" fill="#fff">3</text>
+      <text y="110" font-size="26" font-weight="800" fill="#0f172a">Energía</text>
+      <text y="142" font-size="20" fill="#50607a">voltaje y protección</text>
+    </g>
+    <g transform="translate(1030 260)">
+      <circle r="62" fill="#0b66c3"/><text y="14" font-size="40" font-weight="900" fill="#fff">4</text>
+      <text y="110" font-size="26" font-weight="800" fill="#0f172a">CPU</text>
+      <text y="142" font-size="20" fill="#50607a">arquitectura</text>
+    </g>
+    <g transform="translate(740 500)">
+      <circle r="62" fill="#0b66c3"/><text y="14" font-size="40" font-weight="900" fill="#fff">5</text>
+      <text y="110" font-size="26" font-weight="800" fill="#0f172a">RAID</text>
+      <text y="142" font-size="20" fill="#50607a">velocidad vs redundancia</text>
+    </g>
+    <g transform="translate(455 500)">
+      <circle r="62" fill="#0b66c3"/><text y="14" font-size="40" font-weight="900" fill="#fff">6</text>
+      <text y="110" font-size="26" font-weight="800" fill="#0f172a">Conectividad</text>
+      <text y="142" font-size="20" fill="#50607a">puertos y monitores</text>
+    </g>
+    <g transform="translate(170 500)">
+      <circle r="62" fill="#16a34a"/><path d="M-22 2 l14 15 l30 -32" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+      <text y="110" font-size="26" font-weight="800" fill="#0f172a">Diagnóstico</text>
+      <text y="142" font-size="20" fill="#50607a">síntoma → etapa → prueba</text>
+    </g>
+  </g>
+</svg>

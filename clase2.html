@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Clase 2 - Ensamblaje y configuración (Hardware)</title>
+  <title>TI-311 · Clase 2 — Ensamblaje y configuración</title>
   <style>
     :root{
       --bg1:#eaf1f8;
@@ -149,6 +149,7 @@
     }
     .btn:hover{ transform: translateY(-1px); background:rgba(255,255,255,.92); }
     .btn:active{ transform: translateY(0px); }
+    a.btn{ text-decoration:none; display:inline-block; }
     .btn.primary{
       background:rgba(11,102,195,.10);
       border-color: rgba(11,102,195,.25);
@@ -434,10 +435,11 @@
       </div>
 
       <div class="topcenter">
-        <div class="counterPill"><span class="dot"></span><span id="counterTxt">01 / 13</span></div>
+        <div class="counterPill"><span class="dot"></span><span id="counterTxt">01</span></div>
       </div>
 
       <div class="actions">
+        <a class="btn" href="index.html" title="Volver al inicio del curso">← Curso</a>
         <div class="pill"><span class="miniDot"></span> <span>Sesión virtual</span></div>
         <div class="pill"><span class="miniDot" style="background:rgba(11,102,195,.35)"></span> <span>Receso 15 min</span></div>
 
@@ -479,10 +481,7 @@
         <div class="right">
           <div class="media">
             <img id="slideImg" alt=""/>
-            <div class="placeholder" id="placeholder">
-              Colocá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
-              (Luego te voy pidiendo una por una qué imagen buscar.)
-            </div>
+            <div class="placeholder" id="placeholder"></div>
           </div>
 
           <div class="rightBottom" id="rightBottom"></div>
@@ -508,10 +507,6 @@
   function pad2(n){ return String(n).padStart(2, "0"); }
 
   const slides = [
-// =========================
-// CLASE 2 — Ensamblaje y configuración
-// NOTA: Poné las imágenes (1.png, 2.png, ...) en la MISMA carpeta que este HTML.
-// =========================
 {
   topTitle: "Hardware de computadoras personales",
   topSub: "Tema 2 — Ensamblaje y configuración (clase virtual)",
@@ -536,7 +531,7 @@
         <ul>
           <li>Mini‑retos cortos en chat/voz.</li>
           <li>Comparación por criterios (no “porque sí”).</li>
-          <li>Casos prácticos + ruta de diagnóstico.</li>
+          <li>Actividades en equipo con entregable corto.</li>
         </ul>
       </div>
     </div>
@@ -560,7 +555,7 @@
   kicker: "MAPA RÁPIDO",
   title: "Compatibilidad: 3 preguntas que mandan",
   desc: "Antes de comprar/armar: confirmá compatibilidad en este orden.",
-  imgFile: "2.png",
+  imgFile: "img-compatibilidad.svg",
   leftBlocksHTML: `
     <div class="card">
       <strong>1) ¿Qué placa madre tengo (o voy a usar)?</strong>
@@ -605,7 +600,7 @@
   kicker: "COMPONENTES",
   title: "Placa madre: socket + chipset (lo que define todo)",
   desc: "El socket define cómo se monta el CPU; el chipset define funciones y expansión.",
-  imgFile: "3.png",
+  imgFile: "2.png",
   leftBlocksHTML: `
     <div class="grid">
       <div class="card">
@@ -714,7 +709,7 @@
     </div>
 
     <div class="bigcard" style="margin-top:12px;">
-      <div class="title">Mini‑reto (respuesta rápida)</div>
+      <div class="title">Mini‑reto</div>
       <div style="color:var(--muted); font-size:13px;">
         ¿Qué revisarías primero si “enciende pero no da imagen” después de mover la RAM?
       </div>
@@ -732,7 +727,7 @@
   kicker: "ALMACENAMIENTO",
   title: "SSD SATA vs M.2 (SATA/NVMe): no todo M.2 es NVMe",
   desc: "M.2 es el formato. El protocolo puede ser SATA o NVMe.",
-  imgFile: "6.png",
+  imgFile: "img-m2.svg",
   leftBlocksHTML: `
     <div class="card">
       <strong>Diferencias clave</strong>
@@ -845,9 +840,11 @@
     </div>
 
     <div class="bigcard" style="margin-top:12px;">
-      <div class="title">Actividad guiada (ya lista)</div>
-      <div style="color:var(--muted); font-size:13px;">
-        Abrí Task Manager → Rendimiento. Tomá captura de CPU, RAM y Disco y anotá: % uso, velocidad, capacidad.
+      <div class="title">Actividad guiada (5 min)</div>
+      <div style="color:var(--muted); font-size:13px; line-height:1.6;">
+        1. Abrí el Administrador de tareas (Ctrl + Shift + Esc) → <b>Rendimiento</b>.<br>
+        2. Tomá captura de CPU, Memoria y Disco; anotá % de uso, velocidad y capacidad.<br>
+        3. Abrí CPU‑Z (versión portable desde cpuid.com) y anotá: modelo exacto de CPU, socket, placa madre y tipo de RAM (pestaña <b>Memory</b>).
       </div>
     </div>
   `,
@@ -891,44 +888,6 @@
 {
   topTitle: "Hardware de computadoras personales",
   topSub: "Tema 2 — Ensamblaje y configuración (clase virtual)",
-  kicker: "CASO PRÁCTICO 1",
-  title: "Enciende… pero no da imagen (ruta de diagnóstico)",
-  desc: "Síntomas → hipótesis → evidencia → prueba.",
-  imgFile: "10.png",
-  leftBlocksHTML: `
-    <div class="card">
-      <strong>Situación</strong>
-      <div style="color:var(--muted); font-size:13px;">
-        La PC enciende (fans giran), pero no hay video.
-      </div>
-    </div>
-
-    <div class="card" style="margin-top:12px;">
-      <strong>Ruta sugerida (en orden)</strong>
-      <ol style="margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.6;">
-        <li>Monitor/cable/entrada correcta (evidencia: probar otro cable/puerto).</li>
-        <li>RAM: reseat + probar 1 módulo (evidencia: pitidos/LED DRAM).</li>
-        <li>GPU vs iGPU: cambiar salida a placa si hay iGPU (evidencia: POST).</li>
-        <li>Conectores PSU: 24‑pin + EPS 8‑pin (evidencia: no POST si falta EPS).</li>
-      </ol>
-    </div>
-
-    <div class="bigcard" style="margin-top:12px;">
-      <div class="title">Trabajo en clase (ya definido)</div>
-      <div style="color:var(--muted); font-size:13px;">
-        En equipos: completen una tabla de 4 pasos con: Hipótesis → Evidencia → Prueba → Resultado esperado.
-      </div>
-    </div>
-  `,
-  rightBadges: [
-    { label:"Enfoque", value:"Hipótesis" },
-    { label:"Clave", value:"Evidencia" }
-  ]
-},
-
-{
-  topTitle: "Hardware de computadoras personales",
-  topSub: "Tema 2 — Ensamblaje y configuración (clase virtual)",
   kicker: "RECOMENDACIONES",
   title: "Armar una PC según necesidades (tarea en clase)",
   desc: "No existe “la mejor PC”. Existe la mejor para una necesidad y presupuesto.",
@@ -937,19 +896,19 @@
     <div class="card">
       <strong>Actividad (30 min)</strong>
       <div style="color:var(--muted); font-size:13px; line-height:1.6;">
-        Voy a asignar a cada equipo <b>1 escenario</b>. Ustedes entregan una recomendación con:
+        Cada equipo trabaja el escenario con su mismo número (equipo 1 → escenario 1, etc.; del equipo 5 en adelante se vuelve a empezar en el 1) y entrega una recomendación con:
         <ul>
           <li><b>CPU</b> (línea y motivo)</li>
           <li><b>RAM</b> (GB y por qué)</li>
           <li><b>SSD</b> (capacidad y tipo)</li>
-          <li><b>PSU</b> (potencia y conectores)</li>s
+          <li><b>PSU</b> (potencia y conectores)</li>
           <li>Si aplica: <b>GPU</b> (por qué sí/no)</li>
         </ul>
       </div>
     </div>
 
     <div class="card" style="margin-top:12px;">
-      <strong>Escenarios (ya listos)</strong>
+      <strong>Escenarios</strong>
       <ol style="margin:0; padding-left:18px; color:var(--muted); font-size:13px; line-height:1.6;">
         <li>Oficina/estudio (múltiples pestañas + videollamadas).</li>
         <li>Gaming 1080p (prioridad GPU + PSU).</li>
@@ -1002,7 +961,8 @@
     <div class="bigcard" style="margin-top:12px;">
       <div class="title">Prueba rápida</div>
       <div style="color:var(--muted); font-size:13px;">
-        Si no prende: probá “puentear” Power SW por 1 segundo (solo si es práctica guiada).
+        Si el botón del gabinete no enciende la PC: con la fuente conectada, tocá <b>al mismo tiempo los dos pines PWR_SW</b> con la punta de un destornillador durante 1 segundo.
+        Si arranca, el problema es el botón o su cable, no la placa. Son pines de bajo voltaje; no toques ningún otro pin.
       </div>
     </div>
   `,
@@ -1030,7 +990,7 @@
         </ul>
       </div>
       <div class="card">
-        <strong>Mini caso (ya listo)</strong>
+        <strong>Pregunta aplicada</strong>
         <ul>
           <li>“La PC se vuelve lenta después de 10 minutos.”</li>
           <li>Evidencia: captura temps + uso CPU.</li>
@@ -1049,7 +1009,7 @@
   topTitle: "Hardware de computadoras personales",
   topSub: "Tema 2 — Ensamblaje y configuración (clase virtual)",
   kicker: "ACTIVIDAD GUIADA",
-  title: "RAM vs SSD: 3 escenarios ",
+  title: "RAM vs SSD: 3 escenarios",
   desc: "Elegí prioridad y justificá con criterio (sin inventar).",
   imgFile: "14.png",
   leftBlocksHTML: `
@@ -1067,11 +1027,8 @@
       <div style="color:var(--muted); font-size:13px;">
         Laptop con 8GB RAM y HDD, uso: clases + Chrome + Teams. Presupuesto bajo.
       </div>
-      <div class="pillrow" style="margin-top:8px;">
-        <span class="pill">Respuesta: SSD</span>
-        <span class="pill">Por qué: arranque/carga apps</span>
-        <span class="pill">Evidencia: Disco 100%</span>
-      </div>
+      <div class="revealRow"><button class="btn primary" data-reveal="ra">Ver respuesta</button><button class="btn" data-hide="ra">Ocultar</button></div>
+      <div class="revealBox" id="ra"><b>SSD.</b> El cuello de botella es el disco (arranque y carga de apps). Evidencia: Disco al 100% en el Administrador de tareas.</div>
     </div>
 
     <div class="card" style="margin-top:12px;">
@@ -1079,11 +1036,8 @@
       <div style="color:var(--muted); font-size:13px;">
         PC con SSD, pero 8GB RAM. Uso: 30 pestañas + Canva + Zoom.
       </div>
-      <div class="pillrow" style="margin-top:8px;">
-        <span class="pill">Respuesta: RAM</span>
-        <span class="pill">Por qué: paginación / swaps</span>
-        <span class="pill">Evidencia: RAM 95%</span>
-      </div>
+      <div class="revealRow"><button class="btn primary" data-reveal="rb">Ver respuesta</button><button class="btn" data-hide="rb">Ocultar</button></div>
+      <div class="revealBox" id="rb"><b>RAM.</b> Con 8 GB y mucha multitarea el sistema pagina al disco. Evidencia: Memoria al 90–95%.</div>
     </div>
 
     <div class="card" style="margin-top:12px;">
@@ -1091,11 +1045,8 @@
       <div style="color:var(--muted); font-size:13px;">
         PC con 16GB RAM y HDD. Uso: edición de video básica y exportaciones frecuentes.
       </div>
-      <div class="pillrow" style="margin-top:8px;">
-        <span class="pill">Respuesta: SSD</span>
-        <span class="pill">Por qué: lectura/escritura</span>
-        <span class="pill">Evidencia: tiempos export</span>
-      </div>
+      <div class="revealRow"><button class="btn primary" data-reveal="rc">Ver respuesta</button><button class="btn" data-hide="rc">Ocultar</button></div>
+      <div class="revealBox" id="rc"><b>SSD.</b> La edición lee y escribe archivos grandes; el HDD limita. Evidencia: tiempos de exportación y Disco al 100% al exportar.</div>
     </div>
   `,
   rightBadges: [
@@ -1110,7 +1061,7 @@
   kicker: "CIERRE",
   title: "Checklist final de compatibilidad",
   desc: "Antes de comprar o armar: validá lo esencial.",
-  imgFile: "15.png",
+  imgFile: "img-checklist-compat.svg",
   leftBlocksHTML: `
     <div class="card">
       <strong>Checklist</strong>
@@ -1127,6 +1078,13 @@
       <div class="title">Salida (1 minuto)</div>
       <div style="color:var(--muted); font-size:13px;">
         Decí 1 cosa que ahora revisarías “primero” cuando alguien dice: “No sé qué tiene mi PC”.
+      </div>
+    </div>
+
+    <div class="bigcard" style="margin-top:12px;">
+      <div class="title">Próxima clase</div>
+      <div style="color:var(--muted); font-size:13px;">
+        Aspectos avanzados: POST, BIOS/UEFI, energía, CPU, RAID y conectividad.
       </div>
     </div>
   `,
@@ -1153,25 +1111,18 @@
   const nextBtn = document.getElementById("nextBtn");
 
   function setSlideImage(src){
+    const media = elImg.parentElement;
+    elPh.style.display = "none";
     if(!src){
       elImg.style.display = "none";
-      elPh.style.display = "block";
-      elPh.innerHTML = `
-        Agregá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
-        (Esta slide queda pendiente de imagen. Luego solo poné el nombre en <b>imgFile</b>.)
-      `;
+      media.style.display = "none";
       return;
     }
+    media.style.display = "flex";
+    elImg.onload = () => { elImg.style.display = "block"; };
+    elImg.onerror = () => { elImg.style.display = "none"; media.style.display = "none"; };
+    elImg.alt = (slides[idx] && slides[idx].title) || "";
     elImg.src = src;
-    elImg.onload = () => {
-      elImg.style.display = "block";
-      elPh.style.display = "none";
-    };
-    elImg.onerror = () => {
-      elImg.style.display = "none";
-      elPh.style.display = "block";
-      elPh.textContent = "No se encontró la imagen: " + src + " (ponela en la misma carpeta del HTML).";
-    };
   }
 
   function renderBadges(b){
@@ -1182,8 +1133,13 @@
       d.innerHTML = `<div class="label">${label}</div><div class="value">${value}</div>`;
       return d;
     };
-    if(b && b.ak) elRightBottom.appendChild(mk(b.ak, b.av || ""));
-    if(b && b.bk) elRightBottom.appendChild(mk(b.bk, b.bv || ""));
+    if(!b) return;
+    if(Array.isArray(b)){
+      b.forEach(x => elRightBottom.appendChild(mk(x.label, x.value || "")));
+      return;
+    }
+    if(b.ak) elRightBottom.appendChild(mk(b.ak, b.av || ""));
+    if(b.bk) elRightBottom.appendChild(mk(b.bk, b.bv || ""));
   }
 
   function wireRevealButtons(){

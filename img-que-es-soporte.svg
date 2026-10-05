@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#0b66c3"/></marker>
+  </defs>
+  <rect width="1200" height="800" rx="36" fill="#f6f9fd"/>
+  <text x="600" y="84" text-anchor="middle" font-size="42" font-weight="800" fill="#0a4f96">Soporte técnico = escuchar + resolver</text>
+
+  <!-- usuario -->
+  <g transform="translate(140 260)">
+    <circle cx="90" cy="70" r="56" fill="#cfdceb"/>
+    <path d="M0 250 a90 90 0 0 1 180 0z" fill="#cfdceb"/>
+    <rect x="-20" y="-80" width="250" height="70" rx="20" fill="#fff" stroke="#cfd9e6" stroke-width="3"/>
+    <text x="105" y="-36" text-anchor="middle" font-size="24" fill="#0f172a">“Mi PC no sirve”</text>
+    <text x="90" y="300" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">Usuario</text>
+    <text x="90" y="336" text-anchor="middle" font-size="21" fill="#50607a">describe síntomas</text>
+  </g>
+
+  <!-- proceso -->
+  <line x1="350" y1="420" x2="420" y2="420" stroke="#0b66c3" stroke-width="10" marker-end="url(#ar)"/>
+  <g transform="translate(430 210)">
+    <rect width="340" height="420" rx="28" fill="#0a4f96"/>
+    <text x="170" y="62" text-anchor="middle" font-size="28" font-weight="800" fill="#fff">Técnico</text>
+    <g font-size="22" fill="#fff">
+      <rect x="30" y="94" width="280" height="62" rx="14" fill="#0b66c3"/><text x="170" y="134" text-anchor="middle">1 · Preguntar y escuchar</text>
+      <rect x="30" y="170" width="280" height="62" rx="14" fill="#0b66c3"/><text x="170" y="210" text-anchor="middle">2 · Reunir evidencia</text>
+      <rect x="30" y="246" width="280" height="62" rx="14" fill="#0b66c3"/><text x="170" y="286" text-anchor="middle">3 · Probar y resolver</text>
+      <rect x="30" y="322" width="280" height="62" rx="14" fill="#0b66c3"/><text x="170" y="362" text-anchor="middle">4 · Explicar y documentar</text>
+    </g>
+  </g>
+  <line x1="780" y1="420" x2="850" y2="420" stroke="#0b66c3" stroke-width="10" marker-end="url(#ar)"/>
+
+  <!-- resultado -->
+  <g transform="translate(860 260)">
+    <rect width="220" height="150" rx="14" fill="#0f172a"/>
+    <rect x="16" y="16" width="188" height="118" rx="6" fill="#0e7490"/>
+    <path d="M72 76 l26 26 l52 -52" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="95" y="150" width="30" height="24" fill="#475569"/><rect x="60" y="174" width="100" height="10" rx="5" fill="#475569"/>
+    <text x="110" y="250" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">Equipo</text>
+    <text x="110" y="286" text-anchor="middle" font-size="28" font-weight="800" fill="#0f172a">funcionando</text>
+    <text x="110" y="322" text-anchor="middle" font-size="21" fill="#50607a">y usuario informado</text>
+  </g>
+</svg>

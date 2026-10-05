@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#0b66c3"/></marker>
+  </defs>
+  <rect width="1200" height="800" rx="36" fill="#f6f9fd"/>
+  <text x="600" y="84" text-anchor="middle" font-size="42" font-weight="800" fill="#0a4f96">Orden para revisar compatibilidad</text>
+
+  <!-- 1 placa -->
+  <g transform="translate(50 160)">
+    <rect width="330" height="500" rx="28" fill="#0a4f96"/>
+    <circle cx="165" cy="70" r="40" fill="#fff"/><text x="165" y="86" text-anchor="middle" font-size="44" font-weight="900" fill="#0a4f96">1</text>
+    <rect x="75" y="140" width="180" height="150" rx="10" fill="#1d4f8a" stroke="#93c5fd" stroke-width="4"/>
+    <rect x="135" y="170" width="60" height="60" rx="6" fill="#cbd5e1"/>
+    <g fill="#93c5fd"><rect x="215" y="155" width="10" height="120"/><rect x="232" y="155" width="10" height="120"/><rect x="95" y="250" width="100" height="10"/></g>
+    <text x="165" y="345" text-anchor="middle" font-size="32" font-weight="800" fill="#fff">Placa madre</text>
+    <text x="165" y="390" text-anchor="middle" font-size="22" fill="#cfdceb">Socket</text>
+    <text x="165" y="422" text-anchor="middle" font-size="22" fill="#cfdceb">Chipset</text>
+    <text x="165" y="454" text-anchor="middle" font-size="22" fill="#cfdceb">Formato ATX/mATX/ITX</text>
+  </g>
+  <line x1="390" y1="410" x2="425" y2="410" stroke="#0b66c3" stroke-width="10" marker-end="url(#ar)"/>
+
+  <!-- 2 cpu ram -->
+  <g transform="translate(435 160)">
+    <rect width="330" height="500" rx="28" fill="#fff" stroke="#0b66c3" stroke-width="4"/>
+    <circle cx="165" cy="70" r="40" fill="#0b66c3"/><text x="165" y="86" text-anchor="middle" font-size="44" font-weight="900" fill="#fff">2</text>
+    <rect x="70" y="160" width="90" height="90" rx="8" fill="#cbd5e1" stroke="#475569" stroke-width="4"/>
+    <rect x="92" y="182" width="46" height="46" rx="4" fill="#0b66c3"/>
+    <rect x="185" y="140" width="22" height="130" rx="3" fill="#16a34a"/><rect x="222" y="140" width="22" height="130" rx="3" fill="#16a34a"/>
+    <g fill="#facc15"><rect x="185" y="262" width="22" height="8"/><rect x="222" y="262" width="22" height="8"/></g>
+    <text x="165" y="345" text-anchor="middle" font-size="32" font-weight="800" fill="#0f172a">CPU y RAM</text>
+    <text x="165" y="390" text-anchor="middle" font-size="22" fill="#50607a">Generación soportada</text>
+    <text x="165" y="422" text-anchor="middle" font-size="22" fill="#50607a">Versión de BIOS</text>
+    <text x="165" y="454" text-anchor="middle" font-size="22" fill="#50607a">DDR4 o DDR5</text>
+  </g>
+  <line x1="775" y1="410" x2="810" y2="410" stroke="#0b66c3" stroke-width="10" marker-end="url(#ar)"/>
+
+  <!-- 3 energía -->
+  <g transform="translate(820 160)">
+    <rect width="330" height="500" rx="28" fill="#fff" stroke="#0b66c3" stroke-width="4"/>
+    <circle cx="165" cy="70" r="40" fill="#0b66c3"/><text x="165" y="86" text-anchor="middle" font-size="44" font-weight="900" fill="#fff">3</text>
+    <rect x="85" y="150" width="160" height="120" rx="10" fill="#0f172a"/>
+    <circle cx="165" cy="210" r="42" fill="#1e293b" stroke="#64748b" stroke-width="5"/>
+    <path d="M172 180 l-22 34 h18 l-8 28 l26 -38 h-18z" fill="#facc15"/>
+    <text x="165" y="345" text-anchor="middle" font-size="32" font-weight="800" fill="#0f172a">Energía</text>
+    <text x="165" y="390" text-anchor="middle" font-size="22" fill="#50607a">Watts con margen</text>
+    <text x="165" y="422" text-anchor="middle" font-size="22" fill="#50607a">24p, EPS 8p, PCIe</text>
+    <text x="165" y="454" text-anchor="middle" font-size="22" fill="#50607a">Certificación 80 PLUS</text>
+  </g>
+
+  <text x="600" y="730" text-anchor="middle" font-size="26" fill="#0f172a">La <tspan font-weight="800" fill="#0b66c3">placa madre</tspan> decide qué CPU, RAM y discos podés usar.</text>
+</svg>

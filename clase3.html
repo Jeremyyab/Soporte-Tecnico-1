@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>TI-311 · Introducción al Soporte Técnico I (Clase 1)</title>
+  <title>TI-311 · Clase 3 — Aspectos avanzados de hardware</title>
   <style>
     :root{
       --bg1:#eaf1f8;
@@ -149,6 +149,7 @@
     }
     .btn:hover{ transform: translateY(-1px); background:rgba(255,255,255,.92); }
     .btn:active{ transform: translateY(0px); }
+    a.btn{ text-decoration:none; display:inline-block; }
     .btn.primary{
       background:rgba(11,102,195,.10);
       border-color: rgba(11,102,195,.25);
@@ -434,10 +435,11 @@
       </div>
 
       <div class="topcenter">
-        <div class="counterPill"><span class="dot"></span><span id="counterTxt">01 / 13</span></div>
+        <div class="counterPill"><span class="dot"></span><span id="counterTxt">01</span></div>
       </div>
 
       <div class="actions">
+        <a class="btn" href="index.html" title="Volver al inicio del curso">← Curso</a>
         <div class="pill"><span class="miniDot"></span> <span>Sesión virtual</span></div>
         <div class="pill"><span class="miniDot" style="background:rgba(11,102,195,.35)"></span> <span>Receso 15 min</span></div>
 
@@ -479,10 +481,7 @@
         <div class="right">
           <div class="media">
             <img id="slideImg" alt=""/>
-            <div class="placeholder" id="placeholder">
-              Colocá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
-              (Luego te voy pidiendo una por una qué imagen buscar.)
-            </div>
+            <div class="placeholder" id="placeholder"></div>
           </div>
 
           <div class="rightBottom" id="rightBottom"></div>
@@ -560,18 +559,18 @@ const slides = [
       <div class="bigcard">
         <div class="title">Bloque 2</div>
         <div style="color:var(--muted);font-size:13px;line-height:1.7">
-          Voltaje, protección, CPU, RAID, conectividad y caso práctico.
+          Voltaje, protección, CPU, RAID, puertos y monitores.
         </div>
       </div>
       <div class="bigcard">
-        <div class="title">Foco docente</div>
+        <div class="title">Cómo vamos a pensar</div>
         <div style="color:var(--muted);font-size:13px;line-height:1.7">
           No memorizar nombres: relacionar síntoma → etapa → evidencia → prueba.
         </div>
       </div>
     `,
     rightBadges: { ak:"Secuencia", av:"Arranque → Evidencia", bk:"Enfoque", bv:"Criterio técnico" },
-    imgFile: "02.png"
+    imgFile: "img-ruta-clase3.svg"
   },
   {
     topTitle: "POST, BIOS, CMOS y UEFI",
@@ -733,7 +732,7 @@ const slides = [
       </div>
     `,
     rightBadges: { ak:"Clave", av:"Estabilidad", bk:"Protección", bv:"UPS / OVP" },
-    imgFile: "07.png"
+    imgFile: "img-energia-proteccion.svg"
   },
   {
     topTitle: "Arquitectura de CPU",
@@ -859,7 +858,7 @@ const slides = [
       </div>
     `,
     rightBadges: { ak:"Evitar", av:"RAID 0 para seguridad", bk:"Elegir", bv:"Objetivo primero" },
-    imgFile: "011.png"
+    imgFile: "img-raid.svg"
   },
   {
     topTitle: "Conectividad avanzada",
@@ -896,7 +895,7 @@ const slides = [
       </div>
     `,
     rightBadges: { ak:"Clave", av:"Puerto correcto", bk:"Error común", bv:"Adaptador limitante" },
-    imgFile: "012.png"
+    imgFile: "img-puertos.svg"
   },
   {
     topTitle: "Monitores",
@@ -936,62 +935,6 @@ const slides = [
     imgFile: "013.png"
   },
   {
-    topTitle: "Caso práctico",
-    topSub: "Tema 3 — Diagnóstico guiado",
-    kicker: "CASO",
-    title: "La PC enciende, hace POST parcial y no arranca el sistema",
-    desc: "Vamos a separar fallo de hardware esencial, firmware y unidad de arranque.",
-    leftBlocksHTML: `
-      <div class="bigcard" style="margin-top:0">
-        <div class="title">Situación</div>
-        <div style="color:var(--muted);font-size:13px;line-height:1.7">
-          El equipo muestra logo inicial o entra a BIOS, pero no carga el sistema operativo. En equipos, propongan 3 hipótesis y una prueba para cada una.
-        </div>
-      </div>
-      <div class="bigcard">
-        <div class="title">Posibles líneas</div>
-        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
-          <li>Orden de arranque incorrecto.</li>
-          <li>Unidad no detectada o fallando.</li>
-          <li>Modo de arranque / Secure Boot / BIOS alterado.</li>
-          <li>Corrupción del bootloader.</li>
-        </ul>
-      </div>
-    `,
-    rightBadges: { ak:"Separar", av:"POST vs SO", bk:"Meta", bv:"Hipótesis con prueba" },
-    imgFile: "014.png"
-  },
-  {
-    topTitle: "Actividad de comprobación",
-    topSub: "Tema 3 — Trabajo en clase",
-    kicker: "ACTIVIDAD",
-    title: "Diagnóstico por etapas de arranque",
-    desc: "No todas las fallas pertenecen al mismo nivel. El objetivo es ubicar la etapa antes de actuar.",
-    leftBlocksHTML: `
-      <div class="bigcard" style="margin-top:0">
-        <div class="title">Trabajo en equipos</div>
-        <div style="color:var(--muted);font-size:13px;line-height:1.8">
-          Cada equipo recibe un síntoma:<br>
-          A) Sin POST<br>
-          B) POST pero sin video útil<br>
-          C) BIOS detecta hardware pero no arranca SO<br>
-          D) Reinicios aleatorios bajo carga
-        </div>
-      </div>
-      <div class="bigcard">
-        <div class="title">Entregable</div>
-        <ul style="color:var(--muted);font-size:13px;line-height:1.7">
-          <li>Etapa del fallo.</li>
-          <li>3 hipótesis técnicas.</li>
-          <li>1 evidencia por hipótesis.</li>
-          <li>Orden recomendado de pruebas.</li>
-        </ul>
-      </div>
-    `,
-    rightBadges: { ak:"Meta", av:"Ubicar etapa", bk:"Resultado", bv:"Pruebas ordenadas" },
-    imgFile: "015.png"
-  },
-  {
     topTitle: "Cierre",
     topSub: "Tema 3 — Síntesis",
     kicker: "CIERRE",
@@ -1015,7 +958,7 @@ const slides = [
         </div>
       </div>
     `,
-    rightBadges: { ak:"Clave", av:"Etapa + evidencia", bk:"Próximo tema", bv:"Más configuración" },
+    rightBadges: { ak:"Clave", av:"Etapa + evidencia", bk:"Sigue", bv:"Proyecto final" },
     imgFile: "016.png"
   }
 ];
@@ -1035,25 +978,18 @@ const elTopTitle = document.getElementById("topTitle");
   const nextBtn = document.getElementById("nextBtn");
 
   function setSlideImage(src){
+    const media = elImg.parentElement;
+    elPh.style.display = "none";
     if(!src){
       elImg.style.display = "none";
-      elPh.style.display = "block";
-      elPh.innerHTML = `
-        Agregá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
-        (Esta slide queda pendiente de imagen. Luego solo poné el nombre en <b>imgFile</b>.)
-      `;
+      media.style.display = "none";
       return;
     }
+    media.style.display = "flex";
+    elImg.onload = () => { elImg.style.display = "block"; };
+    elImg.onerror = () => { elImg.style.display = "none"; media.style.display = "none"; };
+    elImg.alt = (slides[idx] && slides[idx].title) || "";
     elImg.src = src;
-    elImg.onload = () => {
-      elImg.style.display = "block";
-      elPh.style.display = "none";
-    };
-    elImg.onerror = () => {
-      elImg.style.display = "none";
-      elPh.style.display = "block";
-      elPh.textContent = "No se encontró la imagen: " + src + " (ponela en la misma carpeta del HTML).";
-    };
   }
 
   function renderBadges(b){
@@ -1064,8 +1000,13 @@ const elTopTitle = document.getElementById("topTitle");
       d.innerHTML = `<div class="label">${label}</div><div class="value">${value}</div>`;
       return d;
     };
-    if(b && b.ak) elRightBottom.appendChild(mk(b.ak, b.av || ""));
-    if(b && b.bk) elRightBottom.appendChild(mk(b.bk, b.bv || ""));
+    if(!b) return;
+    if(Array.isArray(b)){
+      b.forEach(x => elRightBottom.appendChild(mk(x.label, x.value || "")));
+      return;
+    }
+    if(b.ak) elRightBottom.appendChild(mk(b.ak, b.av || ""));
+    if(b.bk) elRightBottom.appendChild(mk(b.bk, b.bv || ""));
   }
 
   function wireRevealButtons(){

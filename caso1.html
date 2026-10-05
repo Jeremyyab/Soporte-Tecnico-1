@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caso práctico 1 · Enciende pero no da imagen</title>
+<link rel="stylesheet" href="curso.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">
+      <img src="cenfotec-logo.png" alt="Universidad CENFOTEC">
+      <div><b>TI-311 · Introducción al Soporte Técnico I</b><span>Caso práctico 1 · Clase 1</span></div>
+    </div>
+    <a class="back" href="index.html">← Volver al curso</a>
+  </div>
+
+  <header class="hero">
+    <div class="kicker">Caso práctico 1 · Fundamentos de hardware</div>
+    <h1>La PC de recepción enciende, pero no da imagen</h1>
+    <p>Van a diagnosticar una falla real con el método de la clase: separar síntomas de suposiciones, plantear hipótesis, pedir evidencia y probar en orden.</p>
+    <div class="meta">
+      <span>Equipos del proyecto (3–4 personas)</span>
+      <span>≈ 40 min al final de la clase</span>
+      <span>Valor: 15 %</span>
+      <span>Entrega: PDF antes de la Clase 2</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>La situación</h2>
+    <div class="ticket">
+      <div class="head"><span><b>Ticket #1042</b> · Clínica Dental Sonrisa</span><span>Prioridad: alta · 7:45 a. m.</span></div>
+      <blockquote>“Ayer en la tarde movieron la computadora de recepción para limpiar debajo del escritorio. Hoy la enciendo, se oyen los ventiladores, pero la pantalla dice <b>Sin señal</b>. Necesito la agenda de pacientes antes de las 10. Ah, y aprovechando: esa compu siempre ha sido lentísima.”</blockquote>
+      <p class="muted" style="margin:8px 0 0">— Andrea Rojas, recepcionista</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Lo que se sabe del equipo</h2>
+    <div class="grid2">
+      <div class="card">
+        <h4>Ficha del equipo (inventario)</h4>
+        <ul>
+          <li>CPU: Intel Core i3-10100 (con video integrado)</li>
+          <li>RAM: 8 GB DDR4 (2 × 4 GB)</li>
+          <li>Almacenamiento: HDD 1 TB, 5 400 rpm</li>
+          <li>Tarjeta de video: NVIDIA GT 1030 en ranura PCIe x16</li>
+          <li>Fuente: genérica 400 W</li>
+          <li>Windows 11, 4 años de uso</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Observado por el técnico al llegar</h4>
+        <ul>
+          <li>Ventiladores de la fuente y del CPU giran.</li>
+          <li>El monitor muestra “No signal – HDMI 1” y su LED queda naranja.</li>
+          <li>El cable HDMI está conectado al puerto HDMI de la <b>placa madre</b>.</li>
+          <li>Las luces del teclado (Num Lock) no responden.</li>
+          <li>No se escuchan pitidos (el gabinete no tiene parlante interno).</li>
+          <li>Hay polvo visible por las rejillas.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Parte A — Diagnóstico (antes de tocar nada)</h2>
+    <ol class="steps">
+      <li><b class="t">Separen hechos de suposiciones.</b>Hagan dos columnas: lo que está comprobado (lo que vio el técnico) y lo que es una suposición de la usuaria o de ustedes. Mínimo 3 elementos por columna.</li>
+      <li><b class="t">Seguridad antes de abrir.</b>Escriban, en orden, los pasos eléctricos y antiestáticos (ESD) que seguirían antes de abrir el gabinete.</li>
+      <li><b class="t">Tres hipótesis con evidencia.</b>Completen la tabla de abajo con 3 hipótesis distintas. Para cada una: qué evidencia la confirmaría o descartaría y qué prueba harían.</li>
+      <li><b class="t">Orden de pruebas.</b>Ordenen las pruebas de la menos invasiva y más probable a la más invasiva, y justifiquen ese orden en 2–3 líneas.</li>
+    </ol>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>#</th><th>Hipótesis</th><th>Evidencia que la confirma o descarta</th><th>Prueba concreta</th><th>Resultado esperado si es correcta</th></tr>
+        <tr class="fill"><td class="c">1</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td class="c">2</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td class="c">3</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+      </table>
+    </div>
+    <div class="note info">Copien esta tabla en su documento. No se vale “cambiar la tarjeta madre” como primera prueba: cada hipótesis debe poder confirmarse o descartarse con una acción concreta.</div>
+  </section>
+
+  <section class="section">
+    <h2>Parte B — Resultados de las pruebas</h2>
+    <p>Abran esta sección <b>solo cuando terminen la Parte A</b>. Lo que hay adentro es lo que encontró el técnico al ejecutar sus pruebas.</p>
+    <details class="reveal">
+      <summary>Ver resultados del técnico y las preguntas 5 a 9</summary>
+      <div class="in">
+        <ol>
+          <li>Pasó el HDMI del monitor a la salida de la GT 1030: <b>sigue sin señal</b>.</li>
+          <li>Con el equipo desconectado y aplicando ESD, abrió el gabinete: uno de los dos módulos de RAM estaba <b>levantado de un lado</b>, fuera del seguro.</li>
+          <li>Reinsertó ambos módulos hasta que cerraron los seguros, dejó el HDMI en la GT 1030 y encendió: <b>da imagen, Windows inicia normal</b>.</li>
+          <li>Ya en Windows, abrió el Administrador de tareas → Rendimiento a los 5 minutos de encender, con el navegador y el sistema de agenda abiertos:</li>
+        </ol>
+        <div class="screen">
+<span class="k">CPU</span>      14 %   3.60 GHz<br>
+<span class="k">Memoria</span>  <span class="bad">7.5 / 7.8 GB (96 %)</span><br>
+<span class="k">Disco 0</span>  <span class="bad">100 %</span>   HDD   tiempo de respuesta medio: 480 ms<br>
+<span class="k">GPU 0</span>    3 %    NVIDIA GeForce GT 1030
+        </div>
+        <ol class="steps" start="5" style="counter-reset:s 4">
+      <li><b class="t">Causa raíz.</b>Expliquen qué causó la falla y por qué mover el equipo pudo provocarla. Indiquen cuál de sus hipótesis acertó y cuáles quedaron descartadas.</li>
+      <li><b class="t">La salida de video.</b>¿Por qué el monitor también debe quedar conectado a la GT 1030 y no a la placa madre? Respondan en 2–3 líneas.</li>
+      <li><b class="t">La lentitud.</b>Con los datos del Administrador de tareas, digan qué mejorarían primero (RAM, SSD o ambos), en qué orden y por qué. Citen los números que usan como evidencia.</li>
+      <li><b class="t">Prevención.</b>Propongan 2 medidas para que esto no vuelva a pasar (por ejemplo, durante limpiezas o traslados).</li>
+      <li><b class="t">Mensaje para Andrea.</b>Redacten el informe para la cliente en 5–8 líneas, sin tecnicismos: qué pasó, qué hicieron, qué recomiendan.</li>
+        </ol>
+      </div>
+    </details>
+  </section>
+
+  <section class="section">
+    <h2>Qué entregan</h2>
+    <ul>
+      <li><b>Un PDF por equipo</b> (máximo 3 páginas) con los puntos 1 a 9 en orden y los nombres de todos los integrantes.</li>
+      <li>La tabla de hipótesis completa (punto 3).</li>
+      <li>Nombre del archivo: <code>Caso1_Equipo#.pdf</code>.</li>
+      <li>Plazo: antes del inicio de la Clase 2.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Rúbrica (100 puntos = 15 % de la nota)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Criterio</th><th class="c">Puntos</th><th>Qué se espera</th></tr>
+        <tr><td>Hechos vs. suposiciones</td><td class="c">10</td><td>Distinguen correctamente lo comprobado de lo supuesto.</td></tr>
+        <tr><td>Seguridad eléctrica y ESD</td><td class="c">15</td><td>Pasos completos y en el orden correcto.</td></tr>
+        <tr><td>Hipótesis, evidencia y pruebas</td><td class="c">25</td><td>Tres hipótesis distintas, cada una verificable con una prueba concreta.</td></tr>
+        <tr><td>Orden de diagnóstico</td><td class="c">10</td><td>De lo menos invasivo a lo más invasivo, justificado.</td></tr>
+        <tr><td>Causa raíz y salida de video</td><td class="c">15</td><td>Explican el mecanismo de la falla y la elección del puerto de video.</td></tr>
+        <tr><td>Recomendación de rendimiento</td><td class="c">15</td><td>Prioridad justificada con los datos del Administrador de tareas.</td></tr>
+        <tr><td>Informe a la cliente</td><td class="c">10</td><td>Claro, breve y sin tecnicismos.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <div class="footer">Universidad CENFOTEC · TI-311 · Ing. Jeremy Alvarado Blanco</div>
+</div>
+</body>
+</html>

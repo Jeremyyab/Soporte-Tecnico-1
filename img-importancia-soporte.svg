@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <rect width="1200" height="800" rx="36" fill="#f6f9fd"/>
+  <text x="600" y="92" text-anchor="middle" font-size="42" font-weight="800" fill="#0a4f96">¿Qué aporta un buen soporte técnico?</text>
+
+  <g transform="translate(60 150)">
+    <rect width="330" height="480" rx="28" fill="#fff" stroke="#cfd9e6" stroke-width="3"/>
+    <path d="M165 50 l90 34 v70 c0 70 -45 110 -90 130 c-45 -20 -90 -60 -90 -130 v-70z" fill="#0b66c3"/>
+    <path d="M125 160 l28 30 l55 -62" fill="none" stroke="#fff" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="165" y="340" text-anchor="middle" font-size="32" font-weight="800" fill="#0f172a">Prevenir</text>
+    <text x="165" y="384" text-anchor="middle" font-size="22" fill="#50607a">Actualizaciones,</text>
+    <text x="165" y="414" text-anchor="middle" font-size="22" fill="#50607a">antivirus, limpieza</text>
+    <text x="165" y="444" text-anchor="middle" font-size="22" fill="#50607a">y revisión periódica</text>
+  </g>
+
+  <g transform="translate(435 150)">
+    <rect width="330" height="480" rx="28" fill="#fff" stroke="#cfd9e6" stroke-width="3"/>
+    <circle cx="165" cy="170" r="105" fill="#0b66c3"/>
+    <circle cx="165" cy="170" r="82" fill="#fff"/>
+    <rect x="148" y="40" width="34" height="26" rx="6" fill="#0a4f96"/>
+    <line x1="165" y1="170" x2="165" y2="110" stroke="#0a4f96" stroke-width="12" stroke-linecap="round"/>
+    <line x1="165" y1="170" x2="210" y2="195" stroke="#dc2626" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="165" cy="170" r="10" fill="#0a4f96"/>
+    <text x="165" y="340" text-anchor="middle" font-size="32" font-weight="800" fill="#0f172a">Resolver rápido</text>
+    <text x="165" y="384" text-anchor="middle" font-size="22" fill="#50607a">Menos tiempo con</text>
+    <text x="165" y="414" text-anchor="middle" font-size="22" fill="#50607a">el equipo detenido</text>
+    <text x="165" y="444" text-anchor="middle" font-size="22" fill="#50607a">(tiempo de inactividad)</text>
+  </g>
+
+  <g transform="translate(810 150)">
+    <rect width="330" height="480" rx="28" fill="#fff" stroke="#cfd9e6" stroke-width="3"/>
+    <g fill="#cfdceb"><rect x="70" y="190" width="44" height="80" rx="6"/><rect x="134" y="150" width="44" height="120" rx="6"/><rect x="198" y="100" width="44" height="170" rx="6"/></g>
+    <path d="M70 170 L140 120 L190 140 L262 64" fill="none" stroke="#0b66c3" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M232 58 L270 56 L266 94" fill="none" stroke="#0b66c3" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="165" y="340" text-anchor="middle" font-size="32" font-weight="800" fill="#0f172a">Productividad</text>
+    <text x="165" y="384" text-anchor="middle" font-size="22" fill="#50607a">Equipos estables</text>
+    <text x="165" y="414" text-anchor="middle" font-size="22" fill="#50607a">= personas que</text>
+    <text x="165" y="444" text-anchor="middle" font-size="22" fill="#50607a">trabajan sin frenos</text>
+  </g>
+
+  <text x="600" y="710" text-anchor="middle" font-size="26" fill="#0f172a">Cada hora sin equipo es <tspan font-weight="800" fill="#dc2626">trabajo que no se hace</tspan>.</text>
+</svg>
