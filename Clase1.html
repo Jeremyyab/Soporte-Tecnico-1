@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>TI-311 · Introducción al Soporte Técnico I (Clase 1)</title>
+  <title>TI-311 · Clase 1 — Fundamentos de hardware</title>
   <style>
     :root{
       --bg1:#eaf1f8;
@@ -149,6 +149,7 @@
     }
     .btn:hover{ transform: translateY(-1px); background:rgba(255,255,255,.92); }
     .btn:active{ transform: translateY(0px); }
+    a.btn{ text-decoration:none; display:inline-block; }
     .btn.primary{
       background:rgba(11,102,195,.10);
       border-color: rgba(11,102,195,.25);
@@ -434,10 +435,11 @@
       </div>
 
       <div class="topcenter">
-        <div class="counterPill"><span class="dot"></span><span id="counterTxt">01 / 13</span></div>
+        <div class="counterPill"><span class="dot"></span><span id="counterTxt">01</span></div>
       </div>
 
       <div class="actions">
+        <a class="btn" href="index.html" title="Volver al inicio del curso">← Curso</a>
         <div class="pill"><span class="miniDot"></span> <span>Sesión virtual</span></div>
         <div class="pill"><span class="miniDot" style="background:rgba(11,102,195,.35)"></span> <span>Receso 15 min</span></div>
 
@@ -479,10 +481,7 @@
         <div class="right">
           <div class="media">
             <img id="slideImg" alt=""/>
-            <div class="placeholder" id="placeholder">
-              Colocá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
-              (Luego te voy pidiendo una por una qué imagen buscar.)
-            </div>
+            <div class="placeholder" id="placeholder"></div>
           </div>
 
           <div class="rightBottom" id="rightBottom"></div>
@@ -641,7 +640,7 @@
         </div>
       `,
       rightBadges: { ak:"Clave", av:"Servicio", bk:"Enfoque", bv:"Solución" },
-      imgFile: "qs.jpg"  // pendiente: luego ponés la imagen de este slide
+      imgFile: "img-que-es-soporte.svg"
     },
     {
   topTitle: "Introducción al Soporte Técnico",
@@ -683,7 +682,7 @@
     </div>
   `,
   rightBadges: { ak:"Efecto", av:"Continuidad", bk:"Meta", bv:"Menos fallas" },
-  imgFile: "is.jpg" // luego ponemos la imagen
+  imgFile: "img-importancia-soporte.svg"
 },
 
 {
@@ -726,7 +725,7 @@
     </div>
   `,
   rightBadges: { ak:"Enfoque", av:"Contexto", bk:"Meta", bv:"Comprender evolución" },
-  imgFile: "historia.jpg" // luego ponemos imagen (si querés un collage, lo armamos después)
+  imgFile: "img-historia.svg"
 },
 {
   topTitle: "Tema 1 · Introducción al computador personal",
@@ -771,7 +770,7 @@
   </div>
 `,
   rightBadges: { ak:"Concepto", av:"Hardware", bk:"Base", bv:"Componentes físicos" },
-  imgFile: "hardware.jpg" // luego agregamos la imagen
+  imgFile: "img-entrada-salida.svg"
 },
 
 {
@@ -811,7 +810,7 @@
     </div>
   `,
   rightBadges: { ak:"Objetivo", av:"Diagnosticar", bk:"Clave", bv:"Causa raíz" },
-  imgFile: "importancia.jpg" 
+  imgFile: "importancia.jpg"
 },
 
 {
@@ -901,7 +900,7 @@
   imgFile: "prev-esd.jpg"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Arquitectura básica",
   kicker: "CONCEPTOS CLAVE",
   title: "¿Qué es un componente?",
@@ -942,7 +941,7 @@
   imgFile: "componentes.jpg"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Estructura física",
   kicker: "GABINETES",
   title: "Gabinetes, cajas, chasis y torres",
@@ -980,7 +979,7 @@
   imgFile: "cases.jpg"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Arquitectura interna",
   kicker: "MOTHERBOARD",
   title: "Placa base (Motherboard)",
@@ -1019,7 +1018,7 @@
   imgFile: "motherboard.jpg"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Procesamiento",
   kicker: "CPU",
   title: "Procesador (Central Processing Unit)",
@@ -1063,7 +1062,7 @@
   imgFile: "cpu.jpg"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Memoria principal",
   kicker: "RAM",
   title: "Memoria RAM (Random Access Memory)",
@@ -1109,7 +1108,7 @@
 },
 
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Almacenamiento",
   kicker: "HDD vs SSD",
   title: "Unidades de almacenamiento",
@@ -1149,7 +1148,7 @@
   imgFile: "almacenamiento.jpg"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Energía del sistema",
   kicker: "FUENTE DE PODER",
   title: "Fuente de alimentación (PSU)",
@@ -1192,7 +1191,7 @@
   imgFile: "psu.jpg"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Control térmico",
   kicker: "REFRIGERACIÓN",
   title: "Sistemas de refrigeración",
@@ -1233,7 +1232,7 @@
   imgFile: "refrigeracion.jpg"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Expansión del sistema",
   kicker: "EXPANSIÓN",
   title: "Tarjetas adaptadoras y ranuras de expansión",
@@ -1275,7 +1274,7 @@
   imgFile: "gpu.png"
 },
 {
-  topTitle: "Tema 3 · Componentes del computador",
+  topTitle: "Tema 1 · Componentes del computador",
   topSub: "Clase 1 — Conectividad externa",
   kicker: "PUERTOS",
   title: "Puertos, cables y conectividad",
@@ -1315,10 +1314,31 @@
     </div>
   `,
   rightBadges: { ak:"Clave", av:"Conectividad", bk:"Diagnóstico", bv:"Identificación" },
-  imgFile: "ports.jpg"
+  imgFile: "img-puertos.svg"
 },
 
-    // --- sigue lo que ya estaba ---
+    {
+      kicker: "RECESO",
+      title: "Receso (15 minutos)",
+      desc: "Pausa. Al volver pasamos del 'qué es cada componente' al 'cómo se diagnostica'.",
+      leftBlocksHTML: `
+        <div class="bigcard" style="margin-top:0">
+          <div class="title">Al volver</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            Herramientas del sistema, energía (AC/DC), panel frontal y diagnóstico por síntomas.
+          </div>
+        </div>
+        <div class="bigcard">
+          <div class="title">Mientras tanto</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            Abrí el <b>Administrador de tareas</b> (Ctrl + Shift + Esc) en tu computadora y dejalo en la pestaña <b>Rendimiento</b>. Lo usamos apenas volvamos.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Tiempo", av:"15 min", bk:"Luego", bv:"Diagnóstico" },
+      imgFile: "img-receso.svg"
+    },
+
     {
       kicker: "TEMA 1",
       title: "Fundamentos de hardware de computadoras personales",
@@ -1438,7 +1458,7 @@
           <div class="card">
             <strong>Para evitar estática</strong>
             <ul>
-              <li>Descarga previa tocando chasis..</li>
+              <li>Descarga previa tocando el chasis metálico.</li>
               <li>Manipular por bordes.</li>
               <li>Uso de pulsera antiestática cuando sea posible.</li>
             </ul>
@@ -1448,9 +1468,8 @@
         <div class="bigcard">
           <div class="title">Situación</div>
           <div style="color:var(--muted);font-size:13px;line-height:1.6">
-           Después de una limpieza el equipo no enciende.<br>
-            Plantee 3 hipótesis técnicas y describa <br>
-qué evidencia confirmaría o descartaría cada una.
+            Después de una limpieza el equipo no enciende.<br>
+            En parejas: planteen <b>3 hipótesis técnicas</b> y, para cada una, qué evidencia la confirmaría o la descartaría.
           </div>
 
           <div class="revealRow">
@@ -1464,7 +1483,7 @@ qué evidencia confirmaría o descartaría cada una.
         </div>
       `,
       rightBadges: { ak:"Meta", av:"Manipular seguro", bk:"Riesgo", bv:"Daño invisible" },
-      imgFile: "hardware-portada.png"
+      imgFile: "9.png"
     },
 
     {
@@ -1494,14 +1513,14 @@ qué evidencia confirmaría o descartaría cada una.
         <div class="bigcard">
           <div class="title">Mini reto</div>
           <div style="color:var(--muted);font-size:13px;line-height:1.6">
-           Si la PSU es insuficiente o presenta falla: <br>
-• Mencione 2 síntomas. <br>
-• Indique qué componente podría verse primero afectado.
+            Si la PSU es insuficiente o está fallando:<br>
+            • Mencioná 2 síntomas que verías.<br>
+            • Indicá qué componente se vería afectado primero y por qué.
           </div>
         </div>
       `,
       rightBadges: { ak:"Tema", av:"Energía", bk:"Clave", bv:"AC → DC" },
-      imgFile: "hardware-portada.png"
+      imgFile: "img-ac-dc.svg"
     },
 
     {
@@ -1524,7 +1543,7 @@ qué evidencia confirmaría o descartaría cada una.
             <ul>
               <li>Los <b>switches(Power/Reset)</b> no tienen polaridad.</li>
               <li>Los <b>LEDs</b> requieren respetar polaridad (+ / -).</li>
-              <li>El <b>pin 9</b> suele ser <b>NC</b> (No conectado) y sirve como referencia física..</li>
+              <li>El <b>pin 9</b> suele ser <b>NC</b> (No conectado) y sirve como referencia física.</li>
             </ul>
           </div>
         </div>
@@ -1532,8 +1551,9 @@ qué evidencia confirmaría o descartaría cada una.
         <div class="bigcard">
           <div class="title">Actividad rápida</div>
           <div style="color:var(--muted);font-size:13px;line-height:1.6">
-            Te muestro un diagrama de pines. En equipo:
-            <b>ubiquen</b> Power SW, Reset SW y los LEDs. Luego explican cómo verificarían si quedó bien.
+            Con el diagrama de la derecha (header de 9 pines), en equipo:
+            <b>ubiquen</b> Power SW, Reset SW, Power LED y HDD LED, indicando la polaridad de cada LED.
+            Después expliquen cómo comprobarían que quedó bien conectado.
           </div>
 
           <div class="revealRow">
@@ -1560,7 +1580,7 @@ qué evidencia confirmaría o descartaría cada una.
           <div class="card">
             <strong>Qué hace</strong>
             <ul>
-              <li>Distribuye energía regulada a los componentes.).</li>
+              <li>Distribuye energía regulada a los componentes.</li>
               <li>Permite comunicación mediante buses (PCIe, SATA, USB).</li>
               <li>Coordina arranque vía BIOS/UEFI.</li>
             </ul>
@@ -1578,12 +1598,12 @@ qué evidencia confirmaría o descartaría cada una.
         <div class="bigcard">
           <div class="title">Pregunta</div>
           <div style="color:var(--muted);font-size:13px;line-height:1.6">
-           ¿Qué síntomas observarías si una RAM está mal asentada? <br>
+            ¿Qué síntomas observarías si una RAM está mal asentada?
           </div>
         </div>
       `,
       rightBadges: { ak:"Rol", av:"Conectar", bk:"Dato", bv:"Buses y energía" },
-      imgFile: "hardware-portada.png"
+      imgFile: "motherboard.jpg"
     },
 
     {
@@ -1602,7 +1622,7 @@ qué evidencia confirmaría o descartaría cada una.
             </ul>
           </div>
           <div class="card">
-            <strong>Mini caso</strong>
+            <strong>Pregunta aplicada</strong>
             <ul>
               <li>“La PC va lenta después de 10 minutos.”</li>
               <li>¿Qué medirías primero?</li>
@@ -1614,25 +1634,24 @@ qué evidencia confirmaría o descartaría cada una.
         <div class="bigcard">
           <div class="title">Tip</div>
           <div style="color:var(--muted);font-size:13px;line-height:1.6">
-            Primero confirmar métricas (temperatura y frecuencia),
-luego intervenir físicamente.
+            Primero confirmar métricas (temperatura y frecuencia), luego intervenir físicamente.
           </div>
         </div>
       `,
       rightBadges: { ak:"Clave", av:"Temperatura", bk:"Riesgo", bv:"Throttling" },
-      imgFile: "hardware-portada.png"
+      imgFile: "13.png"
     },
 
     {
       kicker: "COMPONENTES",
       title: "Memoria RAM y almacenamiento (HDD/SSD)",
-      desc: "La RAM impacta ejecución en tiempo real. El almacenamiento impacta tiempos de carga y respuesta del sistema..",
+      desc: "La RAM impacta ejecución en tiempo real. El almacenamiento impacta tiempos de carga y respuesta del sistema.",
       leftBlocksHTML: `
         <div class="grid">
           <div class="card">
             <strong>RAM</strong>
             <ul>
-              <li>Impacta multitarea y estabilidad del sistema..</li>
+              <li>Impacta multitarea y estabilidad del sistema.</li>
               <li>Fallas generan pantallazos, reinicios o no POST.</li>
               <li>Configuración incorrecta afecta dual-channel.</li>
             </ul>
@@ -1650,22 +1669,17 @@ luego intervenir físicamente.
         <div class="bigcard">
           <div class="title">Actividad</div>
           <div style="color:var(--muted);font-size:13px;line-height:1.6">
-            La PC tarda mucho en encender y abrir programas,
-pero una vez abiertos funcionan normal.
-¿Qué priorizás? <br>
-
-La PC se pone lenta cuando hay muchas pestañas abiertas
-o varios programas al mismo tiempo.
-¿Qué priorizás? <br>
-
-La PC se congela aleatoriamente y a veces reinicia
-sin mostrar errores claros.
-¿Qué revisarías primero? <br>
+            Para cada situación, decidí qué revisás o mejorás primero (RAM, SSD u otra cosa) y por qué:
+            <ol style="margin:8px 0 0; padding-left:18px">
+              <li>Tarda mucho en encender y abrir programas, pero una vez abiertos funcionan normal.</li>
+              <li>Se pone lenta con muchas pestañas o varios programas abiertos a la vez.</li>
+              <li>Se congela al azar y a veces reinicia sin mostrar errores claros.</li>
+            </ol>
           </div>
         </div>
       `,
       rightBadges: { ak:"Claves", av:"RAM/SSD", bk:"Criterio", bv:"Priorizar" },
-      imgFile: "hardware-portada.png"
+      imgFile: "14.png"
     },
 
     {
@@ -1697,87 +1711,20 @@ sin mostrar errores claros.
         <div class="bigcard">
           <div class="title">Dinámica</div>
           <div style="color:var(--muted);font-size:13px;line-height:1.6">
-            Trabajo en equipos (3–4 personas). <br>
-
-Cada equipo recibe un escenario distinto.
-Deben proponer una configuración básica y justificar
-sus decisiones técnicas.<br>
-
-Escenario A – Oficina / Estudio
-Uso: navegación, documentos, clases virtuales.<br>
-
-Escenario B – Gaming
-Uso: juegos actuales en calidad media/alta.<br>
-
-Escenario C – Edición
-Uso: edición de foto y video en 1080p.<br>
-
-Escenario D – Laboratorio / servidor pequeño
-Uso: almacenamiento compartido y pruebas técnicas.<br>
-
-Entrega:<br>
-• CPU recomendado<br>
-• Cantidad de RAM<br>
-• Tipo de almacenamiento<br>
-• ¿Necesita GPU dedicada?<br>
-• Justificación técnica (máx. 5 líneas)
+            Equipos de 3–4 personas. Cada equipo trabaja el escenario que le corresponde por número:
+            <ul style="margin:8px 0">
+              <li><b>Equipo 1 → A. Oficina / estudio:</b> navegación, documentos, clases virtuales.</li>
+              <li><b>Equipo 2 → B. Gaming:</b> juegos actuales en calidad media/alta.</li>
+              <li><b>Equipo 3 → C. Edición:</b> foto y video en 1080p.</li>
+              <li><b>Equipo 4 → D. Laboratorio:</b> almacenamiento compartido y pruebas técnicas.</li>
+            </ul>
+            Si hay más de 4 equipos, el 5 toma A, el 6 toma B, y así sucesivamente.<br><br>
+            <b>Entregan:</b> CPU recomendado · cantidad de RAM · tipo de almacenamiento · ¿GPU dedicada sí o no? · justificación técnica (máx. 5 líneas).
           </div>
         </div>
       `,
       rightBadges: { ak:"Meta", av:"Recomendar", bk:"Base", bv:"Necesidad" },
       imgFile: "pc.png"
-    },
-
-    {
-      kicker: "CASO PRÁCTICO 1",
-      title: "Enciende… pero no da imagen",
-      desc: "Diagnóstico por síntomas: hipótesis → evidencia → prueba.",
-      leftBlocksHTML: `
-        <div class="bigcard">
-          <div class="title">Situación</div>
-          <div style="color:var(--muted);font-size:13px;line-height:1.6">
-            La PC enciende (fans giran), pero no hay video.<br><br>
-            En equipos:
-            <b>1)</b> escriban 3 hipótesis,
-            <b>2)</b> qué revisar primero,
-            <b>3)</b> qué evidencia pedirían.
-          </div>
-
-          <div class="revealRow">
-            <button class="btn primary" data-reveal="r3">Mostrar posibles líneas</button>
-            <button class="btn" data-hide="r3">Ocultar</button>
-          </div>
-          <div class="revealBox" id="r3">
-            Líneas comunes: cable/monitor, RAM, GPU, conector EPS 8p CPU, PSU, salida de video correcta,
-            beep codes/luces debug si existen, reseat de componentes, prueba por descarte.
-          </div>
-        </div>
-
-        <div class="bigcard">
-          <div class="title">Cierre del caso</div>
-          <div style="color:var(--muted);font-size:13px;line-height:1.6">
-            Cada equipo comparte su ruta de diagnóstico (1 minuto). Elegimos la más sólida por evidencia.
-          </div>
-        </div>
-      `,
-      rightBadges: { ak:"Enfoque", av:"Hipótesis", bk:"Clave", bv:"Evidencia" },
-      imgFile: "hardware-portada.png"
-    },
-
-    {
-      kicker: "RECESO",
-      title: "Receso (15 minutos)",
-      desc: "Volvemos y hacemos retroalimentación + asignación del proyecto del curso.",
-      leftBlocksHTML: `
-        <div class="bigcard">
-          <div class="title">Al volver</div>
-          <div style="color:var(--muted);font-size:13px;line-height:1.6">
-            Revisamos respuestas del caso práctico, afinamos criterios y dejamos el proyecto definido.
-          </div>
-        </div>
-      `,
-      rightBadges: { ak:"Tiempo", av:"15 min", bk:"Luego", bv:"Retro + Proyecto" },
-      imgFile: "hardware-portada.png"
     },
 
     {
@@ -1809,12 +1756,39 @@ Entrega:<br>
         <div class="bigcard">
           <div class="title">Defensa</div>
           <div style="color:var(--muted);font-size:13px;line-height:1.6">
-            Presentan y defienden decisiones con criterios técnicos (no “porque sí”).
+            Presentan y defienden decisiones con criterios técnicos (no “porque sí”).<br>
+            Instrucciones completas, fechas y rúbrica: sección <b>Proyecto final</b> en la página del curso.
           </div>
         </div>
       `,
       rightBadges: { ak:"Peso", av:"55%", bk:"Clave", bv:"Justificar" },
-      imgFile: "hardware-portada.png"
+      imgFile: "11.png"
+    },
+
+    {
+      kicker: "CIERRE",
+      title: "Lo que te llevás de hoy",
+      desc: "Antes de cambiar una pieza, entendé qué hace, cómo falla y qué evidencia lo demuestra.",
+      leftBlocksHTML: `
+        <div class="bigcard" style="margin-top:0">
+          <div class="title">Checklist de la clase</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.8">
+            ✓ Distingo síntoma de causa.<br>
+            ✓ Sé qué hace cada componente principal y cómo se ve cuando falla.<br>
+            ✓ Trabajo con ESD: desconecto, me descargo y manipulo por los bordes.<br>
+            ✓ Uso el Administrador de tareas para obtener evidencia.<br>
+            ✓ Diagnostico con la ruta: hipótesis → evidencia → prueba.
+          </div>
+        </div>
+        <div class="bigcard">
+          <div class="title">Próxima clase</div>
+          <div style="color:var(--muted);font-size:13px;line-height:1.7">
+            Ensamblaje y configuración: compatibilidad entre placa, CPU, RAM, almacenamiento y fuente.
+          </div>
+        </div>
+      `,
+      rightBadges: { ak:"Clase", av:"1 de 3", bk:"Sigue", bv:"Ensamblaje" },
+      imgFile: "016.png"
     }
   ];
 
@@ -1834,25 +1808,18 @@ Entrega:<br>
   const nextBtn = document.getElementById("nextBtn");
 
   function setSlideImage(src){
+    const media = elImg.parentElement;
+    elPh.style.display = "none";
     if(!src){
       elImg.style.display = "none";
-      elPh.style.display = "block";
-      elPh.innerHTML = `
-        Agregá la imagen en la carpeta del HTML y se mostrará aquí.<br><br>
-        (Esta slide queda pendiente de imagen. Luego solo poné el nombre en <b>imgFile</b>.)
-      `;
+      media.style.display = "none";
       return;
     }
+    media.style.display = "flex";
+    elImg.onload = () => { elImg.style.display = "block"; };
+    elImg.onerror = () => { elImg.style.display = "none"; media.style.display = "none"; };
+    elImg.alt = (slides[idx] && slides[idx].title) || "";
     elImg.src = src;
-    elImg.onload = () => {
-      elImg.style.display = "block";
-      elPh.style.display = "none";
-    };
-    elImg.onerror = () => {
-      elImg.style.display = "none";
-      elPh.style.display = "block";
-      elPh.textContent = "No se encontró la imagen: " + src + " (ponela en la misma carpeta del HTML).";
-    };
   }
 
   function renderBadges(b){
@@ -1863,8 +1830,13 @@ Entrega:<br>
       d.innerHTML = `<div class="label">${label}</div><div class="value">${value}</div>`;
       return d;
     };
-    if(b && b.ak) elRightBottom.appendChild(mk(b.ak, b.av || ""));
-    if(b && b.bk) elRightBottom.appendChild(mk(b.bk, b.bv || ""));
+    if(!b) return;
+    if(Array.isArray(b)){
+      b.forEach(x => elRightBottom.appendChild(mk(x.label, x.value || "")));
+      return;
+    }
+    if(b.ak) elRightBottom.appendChild(mk(b.ak, b.av || ""));
+    if(b.bk) elRightBottom.appendChild(mk(b.bk, b.bv || ""));
   }
 
   function wireRevealButtons(){

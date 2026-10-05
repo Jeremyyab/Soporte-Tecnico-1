@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caso práctico 3 · La oficina después de la tormenta</title>
+<link rel="stylesheet" href="curso.css">
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand">
+      <img src="cenfotec-logo.png" alt="Universidad CENFOTEC">
+      <div><b>TI-311 · Introducción al Soporte Técnico I</b><span>Caso práctico 3 · Clase 3</span></div>
+    </div>
+    <a class="back" href="index.html">← Volver al curso</a>
+  </div>
+
+  <header class="hero">
+    <div class="kicker">Caso práctico 3 · Aspectos avanzados de hardware</div>
+    <h1>La oficina después de la tormenta</h1>
+    <p>Un apagón dejó tres equipos con problemas distintos. Tienen que ubicar en qué etapa falla cada uno, proponer pruebas, decidir el orden de atención y explicarle al gerente qué pasó.</p>
+    <div class="meta">
+      <span>Equipos del proyecto (3–4 personas)</span>
+      <span>≈ 45 min al final de la clase</span>
+      <span>Valor: 15 %</span>
+      <span>Entrega: PDF en la semana siguiente a la Clase 3</span>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2>La situación</h2>
+    <div class="ticket">
+      <div class="head"><span><b>Llamada de soporte</b> · Mora &amp; Asociados, Contadores</span><span>Lunes, 8:10 a. m.</span></div>
+      <blockquote>“El viernes en la tarde hubo una tormenta fuerte y se fue la luz dos veces. Hoy nada funciona bien: la compu de la contadora no arranca, la de facturación se reinicia sola y el servidor de archivos está dando una alerta de disco. Es cierre de mes y necesitamos todo hoy.”</blockquote>
+      <p class="muted" style="margin:8px 0 0">— Ricardo Mora, gerente</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Los tres equipos</h2>
+
+    <h3>Equipo A · PC de la contadora</h3>
+    <ul>
+      <li>Windows 11 instalado en un SSD NVMe de 500 GB, en modo <b>UEFI</b> con disco GPT.</li>
+      <li>Al encender aparece el logo del fabricante y después estos mensajes:</li>
+    </ul>
+    <div class="screen">
+<span class="bad">CMOS Checksum Error - Defaults Loaded</span><br>
+Press F1 to Run SETUP<br><br>
+<span class="bad">Reboot and Select proper Boot device</span><br>
+or Insert Boot Media in selected Boot device and press a key
+    </div>
+    <ul>
+      <li>Al entrar a la BIOS: fecha <b>01/01/2020</b>; el SSD NVMe <b>sí aparece</b> en la lista de almacenamiento; el modo de arranque quedó en <b>Legacy (CSM)</b>.</li>
+      <li>La contadora comenta: “Desde hace meses, cada vez que desconectamos la compu, la hora se atrasa”.</li>
+    </ul>
+
+    <h3>Equipo B · PC de facturación</h3>
+    <ul>
+      <li>Arranca normal y Windows inicia, pero desde el viernes se reinicia sola 3 o 4 veces al día, sin pantalla azul.</li>
+      <li>Los reinicios suelen pasar cuando la impresora láser de al lado empieza a imprimir.</li>
+      <li>PC e impresora están conectadas a la misma regleta sencilla (sin supresor) en el mismo tomacorriente. Fuente genérica de 5 años.</li>
+      <li>Visor de eventos de Windows:</li>
+    </ul>
+    <div class="screen">
+<span class="k">Nivel</span>     Crítico<br>
+<span class="k">Origen</span>    Kernel-Power<br>
+<span class="k">Id.</span>       41<br>
+<span class="k">Mensaje</span>   <span class="bad">El sistema se ha reiniciado sin apagarse correctamente primero.</span>
+    </div>
+
+    <h3>Equipo C · Servidor de archivos</h3>
+    <ul>
+      <li>Guarda todas las carpetas contables de la oficina. Tiene 2 discos HDD de 2 TB en <b>RAID 0</b> y se ve como un solo volumen de 4 TB.</li>
+      <li>Hace dos años lo configuró un sobrino del gerente “para tener respaldo”. No existe ninguna otra copia de los datos.</li>
+      <li>Hoy en la mañana muestra esta alerta:</li>
+    </ul>
+    <div class="screen">
+<span class="k">SMART · Disco 2</span>   Estado: <span class="bad">Precaución</span><br>
+<span class="k">Atributo 05</span>       Reallocated Sectors Count: <span class="bad">152</span> (el viernes estaba en 0)<br>
+<span class="k">Volumen RAID 0</span>    <span class="ok">Accesible</span>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Lo que tienen que hacer</h2>
+    <ol class="steps">
+      <li><b class="t">Ubiquen la etapa de cada falla.</b>Para A, B y C indiquen en qué etapa está el problema: sin POST, POST/firmware, arranque del sistema operativo, sistema ya iniciado, energía o almacenamiento. Justifiquen con la evidencia del caso.</li>
+      <li><b class="t">Hipótesis y pruebas.</b>Completen la tabla de abajo con al menos 2 hipótesis por equipo, cada una con su prueba y el resultado que la confirmaría.</li>
+      <li><b class="t">Equipo A: plan de BIOS/UEFI.</b>Expliquen por qué no arranca Windows si el SSD sí aparece. Escriban qué ajustes revisarían, el valor correcto de cada uno y qué documentarían antes de cambiar algo. Expliquen también qué causa el mensaje de CMOS y cómo lo resolverían para que no se repita.</li>
+      <li><b class="t">Equipo B: plan eléctrico.</b>Indiquen cómo confirmarían que el problema es de energía y no de Windows. Propongan cómo debería quedar conectado el puesto (PC, monitor e impresora): qué va a UPS, qué va a supresor y qué no se debe conectar a la UPS, con su razón.</li>
+      <li><b class="t">Equipo C: RAID y respaldo.</b>Expliquen, en palabras que entienda el gerente, por qué RAID 0 no es respaldo y qué pasa con <b>todos</b> los datos si falla el Disco 2. Propongan la configuración nueva (nivel de RAID + respaldo) y el orden de los pasos para migrar sin perder información.</li>
+      <li><b class="t">Prioridad de atención.</b>Ordenen A, B y C según urgencia para la oficina (es cierre de mes) y riesgo de pérdida de datos. Justifiquen en 3–4 líneas.</li>
+      <li><b class="t">Informe al gerente.</b>Media página, sin tecnicismos: qué pasó, qué se va a hacer hoy, qué se recomienda comprar o cambiar y por qué.</li>
+    </ol>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Equipo</th><th>Etapa</th><th>Hipótesis</th><th>Prueba</th><th>Resultado que la confirma</th></tr>
+        <tr class="fill"><td>A</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td>A</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td>B</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td>B</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td>C</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+        <tr class="fill"><td>C</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Qué entregan</h2>
+    <ul>
+      <li><b>Un PDF por equipo</b> (máximo 4 páginas) con los puntos 1 a 7 en orden y los nombres de todos los integrantes.</li>
+      <li>La tabla de hipótesis completa e informe al gerente al final.</li>
+      <li>Nombre del archivo: <code>Caso3_Equipo#.pdf</code>.</li>
+      <li>Plazo: una semana después de la Clase 3.</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <h2>Rúbrica (100 puntos = 15 % de la nota)</h2>
+    <div class="tbl-wrap">
+      <table>
+        <tr><th>Criterio</th><th class="c">Puntos</th><th>Qué se espera</th></tr>
+        <tr><td>Ubicación de etapas</td><td class="c">15</td><td>Etapa correcta para los tres equipos, justificada con evidencia.</td></tr>
+        <tr><td>Hipótesis y pruebas</td><td class="c">20</td><td>Hipótesis verificables, con prueba y resultado esperado.</td></tr>
+        <tr><td>Plan de BIOS/UEFI (A)</td><td class="c">15</td><td>Identifican el ajuste de arranque, el origen del error CMOS y documentan antes de cambiar.</td></tr>
+        <tr><td>Plan eléctrico (B)</td><td class="c">15</td><td>Forma de confirmar la causa y conexión correcta del puesto.</td></tr>
+        <tr><td>RAID y respaldo (C)</td><td class="c">20</td><td>Riesgo bien explicado, configuración adecuada y migración segura.</td></tr>
+        <tr><td>Prioridad e informe</td><td class="c">15</td><td>Orden justificado e informe claro para alguien no técnico.</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <div class="footer">Universidad CENFOTEC · TI-311 · Ing. Jeremy Alvarado Blanco</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#0a4f96"/></marker>
+  </defs>
+  <rect width="1200" height="800" rx="36" fill="#f6f9fd"/>
+  <text x="600" y="84" text-anchor="middle" font-size="42" font-weight="800" fill="#0a4f96">La fuente convierte AC en DC</text>
+
+  <!-- tomacorriente -->
+  <g transform="translate(60 240)">
+    <rect width="230" height="300" rx="24" fill="#fff" stroke="#cfd9e6" stroke-width="3"/>
+    <rect x="55" y="40" width="120" height="150" rx="18" fill="#e2e8f0" stroke="#475569" stroke-width="4"/>
+    <rect x="82" y="78" width="12" height="38" rx="3" fill="#0f172a"/><rect x="136" y="78" width="12" height="38" rx="3" fill="#0f172a"/>
+    <path d="M103 150 a12 12 0 0 1 24 0 v10 h-24z" fill="#0f172a"/>
+    <path d="M30 232 q25 -40 50 0 t50 0 t50 0" fill="none" stroke="#dc2626" stroke-width="6"/>
+    <text x="115" y="286" text-anchor="middle" font-size="24" font-weight="800" fill="#dc2626">AC 120 V</text>
+  </g>
+  <text x="175" y="590" text-anchor="middle" font-size="22" fill="#50607a">Corriente alterna</text>
+  <text x="175" y="618" text-anchor="middle" font-size="22" fill="#50607a">de la red eléctrica</text>
+
+  <line x1="300" y1="390" x2="400" y2="390" stroke="#0a4f96" stroke-width="10" marker-end="url(#ar)"/>
+
+  <!-- PSU -->
+  <g transform="translate(415 230)">
+    <rect width="300" height="320" rx="24" fill="#0f172a"/>
+    <circle cx="150" cy="140" r="90" fill="#1e293b" stroke="#475569" stroke-width="6"/>
+    <g stroke="#64748b" stroke-width="6"><line x1="70" y1="140" x2="230" y2="140"/><line x1="150" y1="60" x2="150" y2="220"/><line x1="94" y1="84" x2="206" y2="196"/><line x1="206" y1="84" x2="94" y2="196"/></g>
+    <circle cx="150" cy="140" r="22" fill="#0b66c3"/>
+    <text x="150" y="282" text-anchor="middle" font-size="30" font-weight="800" fill="#fff">PSU</text>
+  </g>
+  <text x="565" y="600" text-anchor="middle" font-size="22" fill="#50607a">Rectifica, regula y protege</text>
+
+  <!-- salidas DC -->
+  <g font-size="26" font-weight="800">
+    <line x1="725" y1="280" x2="820" y2="280" stroke="#f59e0b" stroke-width="10" marker-end="url(#ar)"/>
+    <rect x="830" y="236" width="320" height="88" rx="18" fill="#fff" stroke="#f59e0b" stroke-width="4"/>
+    <text x="852" y="276" fill="#b45309">12 V</text>
+    <text x="852" y="308" font-size="20" font-weight="400" fill="#50607a">CPU, GPU, ventiladores</text>
+
+    <line x1="725" y1="390" x2="820" y2="390" stroke="#dc2626" stroke-width="10" marker-end="url(#ar)"/>
+    <rect x="830" y="346" width="320" height="88" rx="18" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+    <text x="852" y="386" fill="#b91c1c">5 V</text>
+    <text x="852" y="418" font-size="20" font-weight="400" fill="#50607a">USB, discos, lógica</text>
+
+    <line x1="725" y1="500" x2="820" y2="500" stroke="#0b66c3" stroke-width="10" marker-end="url(#ar)"/>
+    <rect x="830" y="456" width="320" height="88" rx="18" fill="#fff" stroke="#0b66c3" stroke-width="4"/>
+    <text x="852" y="496" fill="#0a4f96">3.3 V</text>
+    <text x="852" y="528" font-size="20" font-weight="400" fill="#50607a">Chipset, memoria, buses</text>
+  </g>
+  <line x1="880" y1="620" x2="1100" y2="620" stroke="#0f172a" stroke-width="6"/>
+  <line x1="880" y1="640" x2="1100" y2="640" stroke="#0f172a" stroke-width="6" stroke-dasharray="20 12"/>
+  <text x="990" y="690" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">DC: corriente continua</text>
+</svg>

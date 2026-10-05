@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" font-family="Segoe UI, Roboto, Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10z" fill="#0a4f96"/></marker>
+  </defs>
+  <rect width="1200" height="800" rx="36" fill="#f6f9fd"/>
+  <text x="600" y="84" text-anchor="middle" font-size="42" font-weight="800" fill="#0a4f96">Capas de protección eléctrica</text>
+
+  <!-- red -->
+  <g transform="translate(40 200)">
+    <rect width="230" height="270" rx="24" fill="#fff" stroke="#dc2626" stroke-width="4"/>
+    <text x="115" y="50" text-anchor="middle" font-size="26" font-weight="800" fill="#0f172a">Red eléctrica</text>
+    <path d="M20 150 q15 -40 30 0 t30 0 l8 -70 l8 70 q15 -40 30 0 t30 0 q8 -14 14 0 t14 0 t14 0 q15 -40 30 0" fill="none" stroke="#dc2626" stroke-width="5"/>
+    <text x="115" y="220" text-anchor="middle" font-size="20" fill="#50607a">Picos, caídas</text>
+    <text x="115" y="248" text-anchor="middle" font-size="20" fill="#50607a">y apagones</text>
+  </g>
+  <line x1="278" y1="335" x2="318" y2="335" stroke="#0a4f96" stroke-width="9" marker-end="url(#ar)"/>
+
+  <!-- supresor -->
+  <g transform="translate(325 200)">
+    <rect width="190" height="270" rx="24" fill="#fff" stroke="#cfd9e6" stroke-width="3"/>
+    <rect x="25" y="90" width="140" height="56" rx="12" fill="#e2e8f0" stroke="#475569" stroke-width="4"/>
+    <g fill="#0f172a"><rect x="45" y="108" width="6" height="18"/><rect x="59" y="108" width="6" height="18"/><rect x="92" y="108" width="6" height="18"/><rect x="106" y="108" width="6" height="18"/></g>
+    <circle cx="146" cy="118" r="8" fill="#dc2626"/>
+    <text x="95" y="50" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">Supresor</text>
+    <text x="95" y="210" text-anchor="middle" font-size="19" fill="#50607a">Absorbe picos</text>
+    <text x="95" y="236" text-anchor="middle" font-size="19" fill="#50607a">(no evita apagones)</text>
+  </g>
+  <line x1="522" y1="335" x2="562" y2="335" stroke="#0a4f96" stroke-width="9" marker-end="url(#ar)"/>
+
+  <!-- UPS -->
+  <g transform="translate(570 200)">
+    <rect width="190" height="270" rx="24" fill="#fff" stroke="#cfd9e6" stroke-width="3"/>
+    <rect x="45" y="72" width="100" height="100" rx="12" fill="#0f172a"/>
+    <rect x="68" y="92" width="54" height="30" rx="4" fill="#16a34a"/><rect x="122" y="100" width="6" height="14" fill="#16a34a"/>
+    <circle cx="95" cy="148" r="10" fill="#38bdf8"/>
+    <text x="95" y="50" text-anchor="middle" font-size="24" font-weight="800" fill="#0f172a">UPS</text>
+    <text x="95" y="210" text-anchor="middle" font-size="19" fill="#50607a">Batería de</text>
+    <text x="95" y="236" text-anchor="middle" font-size="19" fill="#50607a">respaldo</text>
+  </g>
+  <line x1="767" y1="335" x2="807" y2="335" stroke="#0a4f96" stroke-width="9" marker-end="url(#ar)"/>
+
+  <!-- PSU -->
+  <g transform="translate(815 200)">
+    <rect width="345" height="270" rx="24" fill="#0f172a"/>
+    <text x="172" y="50" text-anchor="middle" font-size="24" font-weight="800" fill="#fff">Protecciones de la PSU</text>
+    <g font-size="22" font-weight="800">
+      <rect x="25" y="78" width="140" height="48" rx="12" fill="#1e3a5f"/><text x="95" y="110" text-anchor="middle" fill="#93c5fd">OVP</text>
+      <rect x="180" y="78" width="140" height="48" rx="12" fill="#1e3a5f"/><text x="250" y="110" text-anchor="middle" fill="#93c5fd">OCP</text>
+      <rect x="25" y="140" width="140" height="48" rx="12" fill="#1e3a5f"/><text x="95" y="172" text-anchor="middle" fill="#93c5fd">SCP</text>
+      <rect x="180" y="140" width="140" height="48" rx="12" fill="#1e3a5f"/><text x="250" y="172" text-anchor="middle" fill="#93c5fd">OTP</text>
+    </g>
+    <text x="172" y="222" text-anchor="middle" font-size="17" fill="#cbd5e1">Sobrevoltaje · sobrecorriente</text>
+    <text x="172" y="246" text-anchor="middle" font-size="17" fill="#cbd5e1">cortocircuito · sobretemperatura</text>
+  </g>
+
+  <rect x="120" y="540" width="960" height="170" rx="24" fill="#fff" stroke="#f59e0b" stroke-width="4"/>
+  <text x="600" y="590" text-anchor="middle" font-size="26" font-weight="800" fill="#b45309">Síntomas de energía inestable</text>
+  <text x="600" y="636" text-anchor="middle" font-size="22" fill="#0f172a">Reinicios aleatorios · apagados bajo carga · archivos dañados</text>
+  <text x="600" y="672" text-anchor="middle" font-size="22" fill="#0f172a">fallas que aparecen y desaparecen · reloj/BIOS que se reinician tras un apagón</text>
+</svg>

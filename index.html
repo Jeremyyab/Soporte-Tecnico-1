@@ -1,99 +1,123 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Soporte Técnico 2026</title>
-
+<link rel="stylesheet" href="curso.css">
 <style>
-
-body{
-    font-family: Arial, sans-serif;
-    background:#0b1e3a;
-    color:white;
-    text-align:center;
-    padding:60px;
-}
-
-.logo{
-    width:140px;
-    margin-bottom:20px;
-}
-
-h1{
-    font-size:40px;
-    margin-bottom:10px;
-}
-
-h2{
-    font-weight:normal;
-    opacity:0.8;
-    margin-bottom:50px;
-}
-
-.container{
-    max-width:600px;
-    margin:auto;
-}
-
-.btn{
-    display:block;
-    background:#1f6feb;
-    color:white;
-    text-decoration:none;
-    padding:18px;
-    margin:15px 0;
-    border-radius:10px;
-    font-size:20px;
-    transition:0.2s;
-}
-
-.btn:hover{
-    background:#388bfd;
-    transform:scale(1.03);
-}
-
-.footer{
-    margin-top:60px;
-    opacity:0.6;
-}
-
+  .sessions{display:grid;gap:14px;margin-top:16px}
+  .session{
+    display:grid;grid-template-columns:96px 1fr;gap:0;
+    background:rgba(255,255,255,.78);border:1px solid var(--stroke);border-radius:22px;overflow:hidden;
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
+  }
+  .session .num{
+    background:linear-gradient(180deg, var(--brand2), var(--brand));color:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+  }
+  .session .num small{font-size:11px;font-weight:700;letter-spacing:.6px;opacity:.85}
+  .session .num b{font-size:40px;line-height:1}
+  .session .body{padding:18px 20px}
+  .session h2{margin:0;font-size:21px;color:var(--text)}
+  .session p{margin:4px 0 12px;color:var(--muted);font-size:14px}
+  .links{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .lk{
+    display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);
+    border:1px solid var(--stroke);background:#fff;border-radius:14px;padding:12px 14px;transition:.15s;
+  }
+  .lk:hover{border-color:var(--brand);transform:translateY(-2px);box-shadow:0 8px 20px rgba(11,102,195,.12)}
+  .lk .ic{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;flex:none;font-size:18px}
+  .lk.cl .ic{background:#e0ecf9;color:var(--brand2)}
+  .lk.cs .ic{background:#fef3c7;color:var(--warn)}
+  .lk b{display:block;font-size:14px}
+  .lk span{font-size:12.5px;color:var(--muted)}
+  .project .num{background:linear-gradient(180deg,#0f172a,#334155)}
+  .eval{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+  .eval div{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:14px;padding:8px 14px}
+  .eval b{font-size:22px;display:block;line-height:1.1}
+  .eval span{font-size:12px;opacity:.9}
+  @media (max-width:640px){
+    .session{grid-template-columns:1fr}
+    .session .num{flex-direction:row;gap:10px;padding:10px}
+    .session .num b{font-size:26px}
+    .links{grid-template-columns:1fr}
+  }
 </style>
 </head>
-
 <body>
+<div class="wrap">
 
-<img src="cenfotec-logo.png" class="logo">
+  <div class="topbar">
+    <div class="brand">
+      <img src="cenfotec-logo.png" alt="Universidad CENFOTEC">
+      <div><b>Escuela de Tecnologías de Información</b><span>Curso 2026</span></div>
+    </div>
+  </div>
 
-<h1>Soporte Técnico</h1>
-<h2>Curso 2026</h2>
+  <header class="hero">
+    <div class="kicker">TI-311</div>
+    <h1>Introducción al Soporte Técnico I</h1>
+    <p>Hardware de computadoras personales: componentes, ensamblaje, arranque y diagnóstico basado en evidencia. Cada clase cierra con un caso práctico en equipos.</p>
+    <div class="eval">
+      <div><b>3</b><span>sesiones</span></div>
+      <div><b>45 %</b><span>casos prácticos (15 % c/u)</span></div>
+      <div><b>55 %</b><span>proyecto final</span></div>
+    </div>
+  </header>
 
-<div class="container">
+  <div class="sessions">
 
-<a class="btn" href="Clase1.html">
-Clase 1 — Introducción al Hardware
-</a>
+    <div class="session">
+      <div class="num"><small>CLASE</small><b>1</b></div>
+      <div class="body">
+        <h2>Fundamentos de hardware</h2>
+        <p>Qué es el soporte técnico, historia de la PC, componentes principales, seguridad eléctrica y ESD, diagnóstico por síntomas.</p>
+        <div class="links">
+          <a class="lk cl" href="Clase1.html"><span class="ic">▶</span><div><b>Presentación</b><span>Slides de la clase</span></div></a>
+          <a class="lk cs" href="caso1.html"><span class="ic">✎</span><div><b>Caso práctico 1</b><span>Enciende, pero no da imagen</span></div></a>
+        </div>
+      </div>
+    </div>
 
-<a class="btn" href="clase2.html">
-Clase 2 — Ensamblaje de Computadoras
-</a>
+    <div class="session">
+      <div class="num"><small>CLASE</small><b>2</b></div>
+      <div class="body">
+        <h2>Ensamblaje y configuración</h2>
+        <p>Compatibilidad entre placa, CPU, RAM, almacenamiento y fuente; herramientas de diagnóstico (CPU-Z, Administrador de tareas); panel frontal.</p>
+        <div class="links">
+          <a class="lk cl" href="clase2.html"><span class="ic">▶</span><div><b>Presentación</b><span>Slides de la clase</span></div></a>
+          <a class="lk cs" href="caso2.html"><span class="ic">✎</span><div><b>Caso práctico 2</b><span>La actualización que no encaja</span></div></a>
+        </div>
+      </div>
+    </div>
 
-<a class="btn" href="clase3.html">
-Clase 3 — Diagnóstico de Fallos
-</a>
+    <div class="session">
+      <div class="num"><small>CLASE</small><b>3</b></div>
+      <div class="body">
+        <h2>Aspectos avanzados de hardware</h2>
+        <p>POST, BIOS, CMOS y UEFI; energía y protección; arquitectura de CPU; RAID; puertos y monitores.</p>
+        <div class="links">
+          <a class="lk cl" href="clase3.html"><span class="ic">▶</span><div><b>Presentación</b><span>Slides de la clase</span></div></a>
+          <a class="lk cs" href="caso3.html"><span class="ic">✎</span><div><b>Caso práctico 3</b><span>La oficina después de la tormenta</span></div></a>
+        </div>
+      </div>
+    </div>
 
-<a class="btn" href="proyecto.html">
-Proyecto Final
-</a>
+    <div class="session project">
+      <div class="num"><small>FINAL</small><b>★</b></div>
+      <div class="body">
+        <h2>Proyecto final</h2>
+        <p>Levantamiento de requisitos con un cliente y diseño justificado de una PC personalizada. Presentación grupal.</p>
+        <div class="links">
+          <a class="lk cl" href="proyecto.html"><span class="ic">★</span><div><b>Instrucciones y rúbrica</b><span>Entrega y defensa</span></div></a>
+        </div>
+      </div>
+    </div>
 
+  </div>
+
+  <div class="footer">Ing. Jeremy Alvarado Blanco · jalvarado@ucenfotec.ac.cr</div>
 </div>
-
-<div class="footer">
-Ing. Jeremy Alvarado Blanco
-</div>
-
 </body>
-
 </html>
-
-
-
